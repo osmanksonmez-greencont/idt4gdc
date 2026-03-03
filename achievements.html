@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Progress — iDT4GDC</title>
+<meta name="description" content="Project milestones, deliverables, and progress for the iDT4GDC EUREKA ITEA4 project.">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* Summary bar */
+.summary-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 4rem;
+  background: var(--bg-card);
+}
+.sum-item {
+  padding: 2rem 1.75rem;
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+.sum-item:last-child { border-right: none; }
+.sum-n { font-family: var(--font-d); font-size: 2.5rem; font-weight: 800; letter-spacing: -.05em; color: var(--green); margin-bottom: .375rem; }
+.sum-l { font-size: .8125rem; color: var(--text-light); line-height: 1.4; }
+
+/* Phase cards */
+.phases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+.phase-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow var(--transition);
+}
+.phase-card:hover { box-shadow: var(--shadow-md); }
+.phase-card.active { border-color: var(--green-border); }
+.phase-bg-n {
+  position: absolute; bottom: -.5rem; right: 1.5rem;
+  font-family: var(--font-d); font-weight: 800; font-size: 6rem;
+  letter-spacing: -.05em; color: rgba(11,26,46,.04); line-height: 1;
+  user-select: none; pointer-events: none;
+}
+.ph-label { font-family: var(--font-m); font-size: .5875rem; color: var(--green); letter-spacing: .12em; text-transform: uppercase; margin-bottom: .5rem; }
+.ph-title { font-family: var(--font-d); font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: .25rem; }
+.ph-period { font-family: var(--font-m); font-size: .6875rem; color: var(--text-light); margin-bottom: 1.5rem; }
+.ph-list { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+.ph-li { display: flex; gap: .625rem; font-size: .8125rem; color: var(--text-mid); line-height: 1.55; }
+.ph-dot { flex-shrink: 0; width: 5px; height: 5px; border-radius: 50%; background: var(--green); margin-top: .42rem; }
+.ph-dot.dim { opacity: .25; }
+.ph-status {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-family: var(--font-m); font-size: .5875rem;
+  padding: .3rem .75rem; border-radius: 4px; letter-spacing: .06em;
+}
+.ps-done     { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+.ps-active   { background: var(--teal-bg); color: var(--teal); border: 1px solid #9CE0D8; }
+.ps-upcoming { background: rgba(11,26,46,.05); color: var(--text-light); border: 1px solid var(--border); }
+
+/* Timeline events */
+.timeline { position: relative; padding-left: 2.5rem; }
+.timeline::before {
+  content: '';
+  position: absolute; left: 8px; top: 8px; bottom: 0;
+  width: 2px; background: var(--border);
+}
+.tl-event { position: relative; margin-bottom: 2rem; }
+.tl-event::before {
+  content: '';
+  position: absolute; left: -2.5rem; top: .3rem;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--green); border: 2px solid var(--bg);
+  box-shadow: 0 0 0 2px var(--green-border);
+}
+.tl-event.dim::before { background: var(--border); box-shadow: 0 0 0 2px var(--border-light); }
+.tl-date { font-family: var(--font-m); font-size: .625rem; color: var(--text-light); letter-spacing: .08em; text-transform: uppercase; margin-bottom: .375rem; }
+.tl-title { font-family: var(--font-d); font-size: .9375rem; font-weight: 700; color: var(--navy); margin-bottom: .25rem; }
+.tl-desc { font-size: .8125rem; color: var(--text-light); line-height: 1.55; }
+
+/* Deliverables grid */
+.del-section-title {
+  font-family: var(--font-d);
+  font-size: 1.25rem; font-weight: 700;
+  color: var(--navy); margin-bottom: 1.5rem;
+}
+.del-wp-group { margin-bottom: 2.5rem; }
+.del-wp-label {
+  font-family: var(--font-m); font-size: .625rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-light); margin-bottom: .875rem;
+  display: flex; align-items: center; gap: .75rem;
+}
+.del-wp-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.del-items { display: grid; grid-template-columns: repeat(4, 1fr); gap: .875rem; }
+.del-card {
+  background: var(--bg-card);
+  border: 1px solid var(--green-border);
+  border-radius: var(--radius-md);
+  padding: 1.125rem 1rem;
+  transition: all var(--transition);
+}
+.del-card:hover { box-shadow: var(--shadow-sm); transform: translateY(-2px); }
+.dc-id { font-family: var(--font-m); font-size: .6875rem; font-weight: 500; color: var(--green); display: block; margin-bottom: .375rem; }
+.dc-title { font-size: .8125rem; color: var(--text-mid); line-height: 1.4; }
+.dc-status { font-family: var(--font-m); font-size: .5625rem; color: var(--green); margin-top: .625rem; display: block; }
+
+@media (max-width: 900px) {
+  .summary-bar { grid-template-columns: repeat(2, 1fr); }
+  .phases-grid { grid-template-columns: 1fr; }
+  .del-items { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .summary-bar { grid-template-columns: 1fr; }
+  .del-items { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-img" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=700,fit=crop,q=95/m7V5Qp7Ly3Uk0kDa/idit-birlesik-d957BPD1pqS8rWX9.png" alt="iDT4GDC">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="technology.html">Technology</a></li>
+    <li><a href="work-packages.html">Work Packages</a></li>
+    <li><a href="results.html">Results</a></li>
+    <li><a href="consortium.html">Consortium</a></li>
+    <li><a href="achievements.html">Progress</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<nav id="nav-drawer">
+  <a href="index.html">Home</a><a href="technology.html">Technology</a><a href="work-packages.html">Work Packages</a>
+  <a href="results.html">Results</a><a href="consortium.html">Consortium</a><a href="achievements.html">Progress</a>
+  <a href="contact.html" class="nav-cta">Contact</a>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <span class="page-hero-label">Project Progress</span>
+    <h1 class="page-hero-title">Milestones &amp; Deliverables</h1>
+    <p class="page-hero-sub">Tracking iDT4GDC's journey from system architecture to production-ready technology. Phase 2 active — second ITEA review completed January 2026.</p>
+  </div>
+</div>
+
+<section style="background:var(--bg);">
+  <div class="wrap">
+
+    <!-- Summary -->
+    <div class="summary-bar reveal" data-counter-group>
+      <div class="sum-item">
+        <div class="sum-n"><span class="counter" data-target="15">0</span>+</div>
+        <div class="sum-l">Deliverables completed across all work packages</div>
+      </div>
+      <div class="sum-item">
+        <div class="sum-n"><span class="counter" data-target="7">0</span></div>
+        <div class="sum-l">Key Exploitable Results documented for the global data centre market</div>
+      </div>
+      <div class="sum-item">
+        <div class="sum-n"><span class="counter" data-target="2">0</span></div>
+        <div class="sum-l">ITEA review meetings successfully completed</div>
+      </div>
+      <div class="sum-item">
+        <div class="sum-n"><span class="counter" data-target="3">0</span></div>
+        <div class="sum-l">European partner organisations from UK and Turkey</div>
+      </div>
+    </div>
+
+    <!-- Phases -->
+    <div class="reveal">
+      <span class="s-label">Project Timeline</span>
+      <h2 class="s-title">Project Phases</h2>
+    </div>
+    <div class="phases-grid reveal" style="transition-delay:.1s; margin-top:2rem;">
+
+      <div class="phase-card">
+        <div class="phase-bg-n">1</div>
+        <div class="ph-label">Phase 1 · Complete</div>
+        <div class="ph-title">Foundation &amp; Architecture</div>
+        <div class="ph-period">Months 1–18 · 2023–2024</div>
+        <ul class="ph-list">
+          <li class="ph-li"><span class="ph-dot"></span>System architecture &amp; backend deliverables</li>
+          <li class="ph-li"><span class="ph-dot"></span>Digital twin engine deliverables</li>
+          <li class="ph-li"><span class="ph-dot"></span>Hardware optimisation deliverables</li>
+          <li class="ph-li"><span class="ph-dot"></span>Communication &amp; IPR plan deliverables</li>
+          <li class="ph-li"><span class="ph-dot"></span>SWOT &amp; competence analysis</li>
+          <li class="ph-li"><span class="ph-dot"></span>1st ITEA Review Meeting (June 2025)</li>
+        </ul>
+        <span class="ph-status ps-done">✓ Complete</span>
+      </div>
+
+      <div class="phase-card active">
+        <div class="phase-bg-n">2</div>
+        <div class="ph-label">Phase 2 · Active</div>
+        <div class="ph-title">Integration &amp; Validation</div>
+        <div class="ph-period">Months 19–28 · 2025–2026</div>
+        <ul class="ph-list">
+          <li class="ph-li"><span class="ph-dot"></span>Key results reach production-ready status</li>
+          <li class="ph-li"><span class="ph-dot"></span>Exploitable Results Report published</li>
+          <li class="ph-li"><span class="ph-dot"></span>IPR Management Report published</li>
+          <li class="ph-li"><span class="ph-dot"></span>State-of-the-Art report (2025)</li>
+          <li class="ph-li"><span class="ph-dot"></span>2nd ITEA Review Meeting (Jan 2026)</li>
+          <li class="ph-li"><span class="ph-dot"></span>Prototype finalisation (ongoing)</li>
+        </ul>
+        <span class="ph-status ps-active">◉ In Progress</span>
+      </div>
+
+      <div class="phase-card">
+        <div class="phase-bg-n">3</div>
+        <div class="ph-label">Phase 3 · Planned</div>
+        <div class="ph-title">Deployment &amp; Market</div>
+        <div class="ph-period">Months 29–36 · 2026</div>
+        <ul class="ph-list">
+          <li class="ph-li"><span class="ph-dot dim"></span>Open-source platform release</li>
+          <li class="ph-li"><span class="ph-dot dim"></span>Market-ready commercialisation</li>
+          <li class="ph-li"><span class="ph-dot dim"></span>Pilot deployment at data centres</li>
+          <li class="ph-li"><span class="ph-dot dim"></span>ETSI standardisation liaison</li>
+          <li class="ph-li"><span class="ph-dot dim"></span>EU DC Pact formal alignment</li>
+          <li class="ph-li"><span class="ph-dot dim"></span>Final ITEA review &amp; close</li>
+        </ul>
+        <span class="ph-status ps-upcoming">○ Planned</span>
+      </div>
+    </div>
+
+    <!-- Deliverables -->
+    <div class="reveal" style="transition-delay:.1s;">
+      <div class="del-section-title">Completed Deliverables</div>
+
+      <div class="del-wp-group">
+        <div class="del-wp-label">WP1 — System Architecture &amp; Backend</div>
+        <div class="del-items">
+          <div class="del-card"><span class="dc-id">D1.1</span><div class="dc-title">Backend System Implementation</div><span class="dc-status">✓ Complete</span></div>
+          <div class="del-card"><span class="dc-id">D1.2</span><div class="dc-title">System Architecture &amp; Design</div><span class="dc-status">✓ Complete</span></div>
+        </div>
+      </div>
+
+      <div class="del-wp-group">
+        <div class="del-wp-label">WP2 — Digital Twin Engine</div>
+        <div class="del-items">
+          <div class="del-card"><span class="dc-id">D2.2</span><div class="dc-title">Digital Twin Engine</div><span class="dc-status">✓ Complete</span></div>
+          <div class="del-card"><span class="dc-id">D2.5</span><div class="dc-title">DT Engine Module Configuration &amp; Implementation Report 2</div><span class="dc-status">✓ Complete</span></div>
+        </div>
+      </div>
+
+      <div class="del-wp-group">
+        <div class="del-wp-label">WP4 — Hardware Optimisation</div>
+        <div class="del-items">
+          <div class="del-card"><span class="dc-id">D4.1</span><div class="dc-title">Hardware Optimisation Report I</div><span class="dc-status">✓ Complete</span></div>
+          <div class="del-card"><span class="dc-id">D4.2</span><div class="dc-title">Hardware Optimisation Report II</div><span class="dc-status">✓ Complete</span></div>
+          <div class="del-card"><span class="dc-id">D4.4</span><div class="dc-title">Hardware Optimisation Report IV</div><span class="dc-status">✓ Complete</span></div>
+          <div class="del-card"><span class="dc-id">D4.5</span><div class="dc-title">Hardware Optimisation Report V</div><span class="dc-status">✓ Complete</span></div>
+          <div class="del-card"><span class="dc-id">D4.7</span><div class="dc-title">Hardware Optimisation Report VII</div><span class="dc-status">✓ Complete</span></div>
+        </div>
+      </div>
+
+      <div class="del-wp-group">
+        <div class="del-wp-label">WP6 — Communication, Dissemination &amp; Exploitation</div>
+        <div class="del-items">
+          <div class="del-card"><span class="dc-id">D6.1</span><div class="dc-title">Communication &amp; Dissemination Plan</div><span class="dc-status">✓ Complete</span></div>
+          <div class="del-card"><span class="dc-id">D6.2</span><div class="dc-title">IPR Management Guidelines</div><span class="dc-status">✓ Complete</span></div>
+          <div class="del-card"><span class="dc-id">D6.3</span><div class="dc-title">Competence &amp; SWOT Analysis Report</div><span class="dc-status">✓ Complete</span></div>
+          <div class="del-card"><span class="dc-id">D6.4</span><div class="dc-title">Exploitable Results Report-1</div><span class="dc-status">✓ Complete</span></div>
+          <div class="del-card"><span class="dc-id">D6.5</span><div class="dc-title">IPR Management Report-1</div><span class="dc-status">✓ Complete</span></div>
+        </div>
+      </div>
+
+      <div class="del-wp-group">
+        <div class="del-wp-label">Cross-Cutting</div>
+        <div class="del-items">
+          <div class="del-card"><span class="dc-id">SotA</span><div class="dc-title">State of the Art Report 2025</div><span class="dc-status">✓ Published</span></div>
+          <div class="del-card"><span class="dc-id">Leaflet</span><div class="dc-title">Project Profile Leaflet 2025</div><span class="dc-status">✓ Published</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="reveal" style="transition-delay:.15s; margin-top:4rem;">
+      <span class="s-label">Key Events</span>
+      <h2 class="s-title" style="margin-bottom:2.5rem;">Project Timeline</h2>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:3rem;">
+        <div>
+          <div style="font-family:var(--font-d);font-weight:600;font-size:1rem;margin-bottom:1.5rem;color:var(--navy);">Completed</div>
+          <div class="timeline">
+            <div class="tl-event"><div class="tl-date">2023 — Project Start</div><div class="tl-title">iDT4GDC Kicks Off</div><div class="tl-desc">Consortium agreement signed, project launched under EUREKA ITEA4 programme.</div></div>
+            <div class="tl-event"><div class="tl-date">2024 — Phase 1</div><div class="tl-title">Architecture &amp; Foundation Deliverables</div><div class="tl-desc">Architecture, Digital Twin, and Hardware deliverables completed. Communication plans published.</div></div>
+            <div class="tl-event"><div class="tl-date">June 2025</div><div class="tl-title">1st ITEA Review Meeting</div><div class="tl-desc">Successful first programme review presenting Phase 1 results to ITEA evaluators.</div></div>
+            <div class="tl-event"><div class="tl-date">Late 2025</div><div class="tl-title">Key Results Reach Production-Ready Status</div><div class="tl-desc">Backend platform and Integrated Dashboard achieve production-ready status and are validated for deployment.</div></div>
+            <div class="tl-event"><div class="tl-date">Late 2025</div><div class="tl-title">Exploitation Reports Published</div><div class="tl-desc">Exploitable Results Report and IPR Management Report formally published.</div></div>
+            <div class="tl-event"><div class="tl-date">January 2026</div><div class="tl-title">2nd ITEA Review Meeting</div><div class="tl-desc">Successful second review meeting on 20 January 2026 demonstrating Phase 2 progress.</div></div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-d);font-weight:600;font-size:1rem;margin-bottom:1.5rem;color:var(--text-light);">Planned</div>
+          <div class="timeline">
+            <div class="tl-event dim"><div class="tl-date">2026 — Q1/Q2</div><div class="tl-title">Integration Finalisation</div><div class="tl-desc">Completion of WP5 energy management integration and full platform validation.</div></div>
+            <div class="tl-event dim"><div class="tl-date">2026 — Q2/Q3</div><div class="tl-title">Open-Source Release</div><div class="tl-desc">Public release of core platform under dual license. Community launch activities.</div></div>
+            <div class="tl-event dim"><div class="tl-date">2026 — Q3</div><div class="tl-title">Pilot Deployments</div><div class="tl-desc">First pilot deployments at partner data centre sites to validate at real scale.</div></div>
+            <div class="tl-event dim"><div class="tl-date">2026 — Q3/Q4</div><div class="tl-title">Standardisation Liaison</div><div class="tl-desc">Formal engagement with ETSI and EU Climate-Neutral DC Pact working groups.</div></div>
+            <div class="tl-event dim"><div class="tl-date">2026 — Q4</div><div class="tl-title">Final Review &amp; Project Close</div><div class="tl-desc">Final ITEA review meeting and formal project completion.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-main">
+    <div>
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=700,fit=crop,q=95/m7V5Qp7Ly3Uk0kDa/idit-birlesik-d957BPD1pqS8rWX9.png" alt="iDT4GDC" class="footer-logo">
+      <p class="footer-desc">Intelligent Digital Twin for Green Data Centres — EUREKA ITEA4 project SUS2022-042.</p>
+      <div class="footer-badges"><span class="f-badge">EUREKA</span><span class="f-badge">ITEA4</span><span class="f-badge">SUS2022-042</span></div>
+    </div>
+    <div class="footer-col"><h4>Project</h4><ul><li><a href="index.html">Home</a></li><li><a href="technology.html">Technology</a></li><li><a href="work-packages.html">Work Packages</a></li><li><a href="results.html">Key Results</a></li><li><a href="achievements.html">Progress</a></li></ul></div>
+    <div class="footer-col"><h4>Consortium</h4><ul><li><a href="consortium.html">Partners</a></li><li><a href="consortium.html#innova">Innova Integra</a></li><li><a href="consortium.html#bitnet">BitNet Bilişim</a></li><li><a href="consortium.html#green-continuum">Green Continuum</a></li></ul></div>
+    <div class="footer-col"><h4>Resources</h4><ul><li><a href="achievements.html">Deliverables</a></li><li><a href="contact.html">Contact</a></li><li><a href="https://itea4.org/project/idt4gdc.html" target="_blank" rel="noopener">ITEA4 Page ↗</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-disclaimer">© 2026 iDT4GDC Consortium. Co-funded under EUREKA ITEA4 (SUS2022-042). Views expressed are those of the consortium and do not represent EUREKA or national funding agencies.</p>
+    <span class="footer-id">iDT4GDC · SUS2022-042</span>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consortium — iDT4GDC</title>
+<meta name="description" content="The iDT4GDC consortium — three European partners combining sustainability expertise, hardware engineering, and AI research.">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* Partner full cards */
+.partner-full {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+  transition: box-shadow var(--transition);
+}
+.partner-full:hover { box-shadow: var(--shadow-md); }
+
+.partner-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.5rem;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-alt);
+}
+.partner-avatar {
+  width: 80px; height: 80px;
+  background: var(--green-bg);
+  border: 1px solid var(--green-border);
+  border-radius: var(--radius-lg);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-d); font-size: 1.375rem; font-weight: 800;
+  letter-spacing: -.04em; color: var(--green); flex-shrink: 0;
+}
+.partner-avatar-logo {
+  width: 152px; height: 64px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  padding: .75rem 1rem;
+  flex-shrink: 0;
+}
+.partner-avatar-logo img {
+  max-width: 100%; max-height: 100%;
+  object-fit: contain;
+}
+.partner-meta {}
+.partner-flag-row { display: flex; align-items: center; gap: .625rem; margin-bottom: .5rem; }
+.partner-flag { font-size: 1.375rem; }
+.partner-country-tag { font-family: var(--font-m); font-size: .5875rem; color: var(--text-light); letter-spacing: .1em; text-transform: uppercase; }
+.partner-name { font-family: var(--font-d); font-size: 1.5rem; font-weight: 800; color: var(--navy); letter-spacing: -.03em; margin-bottom: .25rem; }
+.partner-role-tag {}
+
+.partner-body {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  padding: 2.5rem;
+}
+.pb-desc { font-size: .9375rem; color: var(--text-mid); line-height: 1.75; margin-bottom: 1.5rem; }
+.pb-contributions {}
+.pbc-title { font-family: var(--font-m); font-size: .625rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-light); margin-bottom: .75rem; }
+.pbc-list { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+.pbc-item { display: flex; gap: .75rem; font-size: .875rem; color: var(--text-mid); line-height: 1.5; }
+.pbc-dot { flex-shrink: 0; width: 5px; height: 5px; border-radius: 50%; background: var(--green); margin-top: .425rem; }
+
+.pb-sidebar {}
+.pbs-block { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-light); }
+.pbs-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.pbs-label { font-family: var(--font-m); font-size: .5875rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-light); margin-bottom: .5rem; }
+.pbs-value { font-size: .875rem; color: var(--text-mid); line-height: 1.55; }
+.pbs-value strong { color: var(--navy); font-weight: 600; }
+
+.tag-row { display: flex; flex-wrap: wrap; gap: .375rem; margin-top: .5rem; }
+
+/* Leadership section */
+.leadership-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-top: 3rem;
+}
+.lc-title { font-family: var(--font-d); font-size: 1.125rem; font-weight: 700; color: var(--navy); margin-bottom: 1.5rem; }
+.leader-row { display: flex; align-items: center; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border-light); }
+.leader-row:last-child { border-bottom: none; padding-bottom: 0; }
+.leader-avatar { width: 44px; height: 44px; background: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-d); font-weight: 700; font-size: .875rem; color: #fff; flex-shrink: 0; }
+.leader-info {}
+.leader-name { font-family: var(--font-d); font-size: .9375rem; font-weight: 700; color: var(--navy); }
+.leader-title { font-size: .8125rem; color: var(--text-light); }
+
+@media (max-width: 768px) {
+  .partner-header { grid-template-columns: auto 1fr; }
+  .partner-body { grid-template-columns: 1fr; }
+  .partner-role-tag { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-img" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=700,fit=crop,q=95/m7V5Qp7Ly3Uk0kDa/idit-birlesik-d957BPD1pqS8rWX9.png" alt="iDT4GDC">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="technology.html">Technology</a></li>
+    <li><a href="work-packages.html">Work Packages</a></li>
+    <li><a href="results.html">Results</a></li>
+    <li><a href="consortium.html">Consortium</a></li>
+    <li><a href="achievements.html">Progress</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<nav id="nav-drawer">
+  <a href="index.html">Home</a><a href="technology.html">Technology</a><a href="work-packages.html">Work Packages</a>
+  <a href="results.html">Results</a><a href="consortium.html">Consortium</a><a href="achievements.html">Progress</a>
+  <a href="contact.html" class="nav-cta">Contact</a>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <span class="page-hero-label">Project Partners</span>
+    <h1 class="page-hero-title">Consortium</h1>
+    <p class="page-hero-sub">Three European partners combining sustainability expertise, hardware engineering, and AI research — united by a mission to make data centres climate-neutral.</p>
+  </div>
+</div>
+
+<section style="background:var(--bg);">
+  <div class="wrap">
+
+    <!-- Innova Integra (Project Leader) -->
+    <div class="partner-full reveal" id="innova">
+      <div class="partner-header">
+        <div class="partner-avatar-logo">
+          <img src="https://www.innovaintegra.com/wp-content/uploads/2023/01/cropped-innova-logo-png-clear-1.png" alt="Innova Integra Limited">
+        </div>
+        <div class="partner-meta">
+          <div class="partner-flag-row">
+            <span class="partner-flag">🇬🇧</span>
+            <span class="partner-country-tag">United Kingdom</span>
+          </div>
+          <div class="partner-name">Innova Integra Limited</div>
+          <div class="partner-role-tag">
+            <span class="tag">WP1 Lead</span>
+            <span class="tag tag-navy" style="margin-left:.375rem;">Project Leader Organisation</span>
+          </div>
+        </div>
+        <div>
+          <a href="contact.html" class="btn-outline" style="font-size:.875rem; padding:.625rem 1.25rem;">Contact →</a>
+        </div>
+      </div>
+      <div class="partner-body">
+        <div>
+          <p class="pb-desc">Innova Integra Limited is the project leader organisation for iDT4GDC and leads Work Package 1, which establishes the entire system architecture. The company brings deep expertise in AI optimisation modules, green energy forecasting systems, and enterprise backend architecture to the project.</p>
+          <p class="pb-desc">As the technical anchor of the consortium, Innova Integra is responsible for the production-ready backend (KER-6) and the AI optimisation components including the Energy Source Optimisation Engine (KER-1), Green Energy Forecasting Module (KER-2), and Dynamic Energy Pricing Mechanism (KER-3). Their work on system integration ensures that all components from all partners work together seamlessly.</p>
+          <div class="pb-contributions">
+            <div class="pbc-title">Contributions to iDT4GDC</div>
+            <ul class="pbc-list">
+              <li class="pbc-item"><span class="pbc-dot"></span>Leading WP1: System Architecture &amp; Backend</li>
+              <li class="pbc-item"><span class="pbc-dot"></span>Designing and implementing the SOA backend platform (KER-6)</li>
+              <li class="pbc-item"><span class="pbc-dot"></span>Developing the DCIM digital twin integration layer</li>
+              <li class="pbc-item"><span class="pbc-dot"></span>Building AI/ML optimisation modules (KER-1, KER-2, KER-3)</li>
+              <li class="pbc-item"><span class="pbc-dot"></span>Overall system integration and API gateway design</li>
+              <li class="pbc-item"><span class="pbc-dot"></span>Open-source licensing strategy and community engagement</li>
+              <li class="pbc-item"><span class="pbc-dot"></span>ITEA review meeting coordination and project management</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pb-sidebar">
+          <div class="pbs-block">
+            <div class="pbs-label">Location</div>
+            <div class="pbs-value"><strong>United Kingdom</strong></div>
+          </div>
+          <div class="pbs-block">
+            <div class="pbs-label">Project Role</div>
+            <div class="pbs-value">Project Leader · WP1 Lead</div>
+          </div>
+          <div class="pbs-block">
+            <div class="pbs-label">Expertise Areas</div>
+            <div class="tag-row">
+              <span class="tag">AI Optimisation</span>
+              <span class="tag">Energy Forecasting</span>
+              <span class="tag">Backend Architecture</span>
+              <span class="tag">Digital Twin</span>
+              <span class="tag">Open Source</span>
+            </div>
+          </div>
+          <div class="pbs-block">
+            <div class="pbs-label">Project Leader</div>
+            <div class="pbs-value"><strong>Marco Tiemann</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BitNet Bilişim -->
+    <div class="partner-full reveal" style="transition-delay:.1s;" id="bitnet">
+      <div class="partner-header">
+        <div class="partner-avatar-logo">
+          <img src="https://static.wixstatic.com/media/0eaf0e_03630f83a3f849f383a57b1a8bcab4e1~mv2.png" alt="BitNet Bilişim">
+        </div>
+        <div class="partner-meta">
+          <div class="partner-flag-row">
+            <span class="partner-flag">🇹🇷</span>
+            <span class="partner-country-tag">Turkey</span>
+          </div>
+          <div class="partner-name">BitNet Bilişim</div>
+          <div class="partner-role-tag">
+            <span class="tag tag-teal">WP4 Contributor</span>
+            <span class="tag tag-navy" style="margin-left:.375rem;">Hardware Specialist</span>
+          </div>
+        </div>
+        <div>
+          <a href="contact.html" class="btn-outline" style="font-size:.875rem; padding:.625rem 1.25rem;">Contact →</a>
+        </div>
+      </div>
+      <div class="partner-body">
+        <div>
+          <p class="pb-desc">BitNet Bilişim is a Turkish IT infrastructure company with specialised expertise in hardware optimisation, interactive data visualisation, and efficient compute architecture. As the primary contributor to Work Package 4, BitNet brings deep technical knowledge of physical hardware behaviour that is essential to the iDT4GDC hardware optimisation engine (KER-4).</p>
+          <p class="pb-desc">BitNet's hands-on experience with real-world data centre hardware deployment ensures that the platform's optimisation algorithms are grounded in practical infrastructure realities. Their contribution to the Integrated Dashboard (KER-7) focuses on making complex operational data accessible through intuitive interactive visualisations.</p>
+          <div class="pb-contributions">
+            <div class="pbc-title">Contributions to iDT4GDC</div>
+            <ul class="pbc-list">
+              <li class="pbc-item"><span class="pbc-dot"></span>Primary contributor to WP4: Hardware Optimisation</li>
+              <li class="pbc-item"><span class="pbc-dot"></span>Developing the Hardware Optimisation Engine</li>
+              <li class="pbc-item"><span class="pbc-dot"></span>Hardware profiling, efficiency characterisation, and allocation algorithms</li>
+              <li class="pbc-item"><span class="pbc-dot"></span>Interactive data visualisation components for KER-7 (Integrated Dashboard)</li>
+              <li class="pbc-item"><span class="pbc-dot"></span>Heterogeneous hardware integration testing and validation</li>
+              <li class="pbc-item"><span class="pbc-dot"></span>Contributing to KER-5 (Integrated System Demonstrator)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pb-sidebar">
+          <div class="pbs-block">
+            <div class="pbs-label">Location</div>
+            <div class="pbs-value"><strong>Turkey</strong></div>
+          </div>
+          <div class="pbs-block">
+            <div class="pbs-label">Expertise Areas</div>
+            <div class="tag-row">
+              <span class="tag">Hardware Optimisation</span>
+              <span class="tag">Data Visualisation</span>
+              <span class="tag">IT Infrastructure</span>
+              <span class="tag">Compute Architecture</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Green Continuum -->
+    <div class="partner-full reveal" style="transition-delay:.2s;" id="green-continuum">
+      <div class="partner-header">
+        <div class="partner-avatar-logo">
+          <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=700,fit=crop,q=95/A0x19OJBVwspJEve/gclogo-AQEDWqbeJ2Fpw4WQ.png" alt="Green Continuum">
+        </div>
+        <div class="partner-meta">
+          <div class="partner-flag-row">
+            <span class="partner-flag">🇹🇷</span>
+            <span class="partner-country-tag">Turkey</span>
+          </div>
+          <div class="partner-name">Green Continuum</div>
+          <div class="partner-role-tag">
+            <span class="tag">WP6 Lead</span>
+            <span class="tag tag-navy" style="margin-left:.375rem;">Consortium Coordinator</span>
+          </div>
+        </div>
+        <div>
+          <a href="contact.html" class="btn-outline" style="font-size:.875rem; padding:.625rem 1.25rem;">Contact →</a>
+        </div>
+      </div>
+      <div class="partner-body">
+        <div>
+          <p class="pb-desc">Green Continuum is a Turkey-based sustainability consultancy and technology company specialising in carbon benchmarking and digital sustainability solutions for the data centre industry. As the Work Package 6 leader, Green Continuum coordinates all exploitation activities, manages the consortium's Intellectual Property Rights strategy, and leads the commercial pathway for the iDT4GDC platform.</p>
+          <p class="pb-desc">With deep expertise in the EU Green Deal regulatory landscape and the Climate-Neutral Data Centre Pact, Green Continuum ensures that iDT4GDC's technology aligns with current and emerging sustainability standards. The company brings an extensive industry network that enables effective dissemination to target markets.</p>
+          <div class="pb-contributions">
+            <div class="pbc-title">Contributions to iDT4GDC</div>
+            <ul class="pbc-list">
+              <li class="pbc-item"><span class="pbc-dot"></span>Leading WP6: Communication, Dissemination &amp; Exploitation</li>
+              <li class="pbc-item"><span class="pbc-dot"></span>Authoring and managing the Communication &amp; Dissemination Plan</li>
+              <li class="pbc-item"><span class="pbc-dot"></span>IPR strategy, patent landscape monitoring, and management reporting</li>
+              <li class="pbc-item"><span class="pbc-dot"></span>Competence and SWOT analysis for market positioning</li>
+              <li class="pbc-item"><span class="pbc-dot"></span>Exploitable Results documentation and commercialisation planning</li>
+              <li class="pbc-item"><span class="pbc-dot"></span>Carbon benchmarking methodology in KER-7 (Integrated Dashboard)</li>
+              <li class="pbc-item"><span class="pbc-dot"></span>Regulatory alignment with EU Green Deal and CNDCP</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pb-sidebar">
+          <div class="pbs-block">
+            <div class="pbs-label">Location</div>
+            <div class="pbs-value"><strong>Turkey</strong></div>
+          </div>
+          <div class="pbs-block">
+            <div class="pbs-label">WP Leadership</div>
+            <div class="pbs-value">WP6 — Communication, Dissemination &amp; Exploitation</div>
+          </div>
+          <div class="pbs-block">
+            <div class="pbs-label">Expertise Areas</div>
+            <div class="tag-row">
+              <span class="tag">Carbon Benchmarking</span>
+              <span class="tag">Exploitation</span>
+              <span class="tag">IPR Management</span>
+              <span class="tag">SWOT Analysis</span>
+              <span class="tag">EU Regulatory</span>
+            </div>
+          </div>
+          <div class="pbs-block">
+            <div class="pbs-label">Social</div>
+            <div class="pbs-value">
+              <a href="https://www.linkedin.com/company/idt4gdc" target="_blank" rel="noopener" style="color:var(--green); text-decoration:none;">LinkedIn ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Leadership -->
+    <div class="leadership-card reveal" style="transition-delay:.15s;">
+      <div class="lc-title">Project Leadership</div>
+      <div class="leader-row">
+        <div class="leader-avatar">MT</div>
+        <div class="leader-info">
+          <div class="leader-name">Marco Tiemann</div>
+          <div class="leader-title">Project Leader — Innova Integra Limited (UK)</div>
+        </div>
+        <span class="tag" style="margin-left:auto;">Project Leader</span>
+      </div>
+      <div style="margin-top:1.25rem; padding: 1.25rem; background: var(--green-bg); border: 1px solid var(--green-border); border-radius: var(--radius-sm); font-size: .875rem; color: var(--text-mid); line-height: 1.65;">
+        The iDT4GDC project is funded by the national funding authorities of the participating countries (United Kingdom and Turkey) through the EUREKA ITEA4 programme. For more information about the project, visit the <a href="https://itea4.org/project/idt4gdc.html" target="_blank" rel="noopener" style="color: var(--green); font-weight: 600;">official ITEA4 project page ↗</a>.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-main">
+    <div>
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=700,fit=crop,q=95/m7V5Qp7Ly3Uk0kDa/idit-birlesik-d957BPD1pqS8rWX9.png" alt="iDT4GDC" class="footer-logo">
+      <p class="footer-desc">Intelligent Digital Twin for Green Data Centres — EUREKA ITEA4 project SUS2022-042.</p>
+      <div class="footer-badges"><span class="f-badge">EUREKA</span><span class="f-badge">ITEA4</span><span class="f-badge">SUS2022-042</span></div>
+    </div>
+    <div class="footer-col"><h4>Project</h4><ul><li><a href="index.html">Home</a></li><li><a href="technology.html">Technology</a></li><li><a href="work-packages.html">Work Packages</a></li><li><a href="results.html">Key Results</a></li><li><a href="achievements.html">Progress</a></li></ul></div>
+    <div class="footer-col"><h4>Consortium</h4><ul><li><a href="consortium.html">Partners</a></li><li><a href="consortium.html#innova">Innova Integra</a></li><li><a href="consortium.html#bitnet">BitNet Bilişim</a></li><li><a href="consortium.html#green-continuum">Green Continuum</a></li></ul></div>
+    <div class="footer-col"><h4>Resources</h4><ul><li><a href="achievements.html">Deliverables</a></li><li><a href="contact.html">Contact</a></li><li><a href="https://itea4.org/project/idt4gdc.html" target="_blank" rel="noopener">ITEA4 Page ↗</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-disclaimer">© 2026 iDT4GDC Consortium. Co-funded under EUREKA ITEA4 (SUS2022-042). Project leader: Marco Tiemann (Innova Integra Ltd., United Kingdom). Views expressed do not represent EUREKA or national funding agencies.</p>
+    <span class="footer-id">iDT4GDC · SUS2022-042</span>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

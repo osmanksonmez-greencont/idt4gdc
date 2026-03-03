@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Key Results — iDT4GDC</title>
+<meta name="description" content="Seven Key Exploitable Results (KERs) from the iDT4GDC project, targeting the global data centre sustainability market.">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* KER grid */
+.ker-grid { display: flex; flex-direction: column; gap: 2rem; }
+
+.ker-card-full {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: box-shadow var(--transition);
+}
+.ker-card-full:hover { box-shadow: var(--shadow-md); }
+
+.ker-card-header {
+  padding: 1.75rem 2rem;
+  border-bottom: 1px solid var(--border-light);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1.5rem;
+}
+.ker-id-badge {
+  width: 56px; height: 56px;
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-m); font-size: .625rem; font-weight: 500;
+  letter-spacing: .04em; flex-shrink: 0; text-align: center;
+  background: var(--green-bg); border: 1px solid var(--green-border); color: var(--green);
+}
+
+.ker-hdr-text {}
+.ker-hdr-id { font-family: var(--font-m); font-size: .5625rem; letter-spacing: .12em; color: var(--text-light); margin-bottom: .25rem; }
+.ker-hdr-title { font-family: var(--font-d); font-size: 1.25rem; font-weight: 700; color: var(--navy); }
+.ker-hdr-wp { font-size: .8125rem; color: var(--text-light); margin-top: .25rem; }
+
+.ker-card-body {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.ker-desc { font-size: .9375rem; color: var(--text-mid); line-height: 1.7; }
+
+.ker-sidebar {}
+.ks-block { margin-bottom: 1.5rem; }
+.ks-block:last-child { margin-bottom: 0; }
+.ks-label { font-family: var(--font-m); font-size: .5875rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-light); margin-bottom: .5rem; }
+.ks-content { font-size: .8125rem; color: var(--text-mid); line-height: 1.55; }
+
+@media (max-width: 768px) {
+  .ker-card-body { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-img" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=700,fit=crop,q=95/m7V5Qp7Ly3Uk0kDa/idit-birlesik-d957BPD1pqS8rWX9.png" alt="iDT4GDC">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="technology.html">Technology</a></li>
+    <li><a href="work-packages.html">Work Packages</a></li>
+    <li><a href="results.html">Results</a></li>
+    <li><a href="consortium.html">Consortium</a></li>
+    <li><a href="achievements.html">Progress</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<nav id="nav-drawer">
+  <a href="index.html">Home</a><a href="technology.html">Technology</a><a href="work-packages.html">Work Packages</a>
+  <a href="results.html">Results</a><a href="consortium.html">Consortium</a><a href="achievements.html">Progress</a>
+  <a href="contact.html" class="nav-cta">Contact</a>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <span class="page-hero-label">Exploitable Results</span>
+    <h1 class="page-hero-title">Key Exploitable Results</h1>
+    <p class="page-hero-sub">Seven documented Key Exploitable Results from the iDT4GDC project — ranging from validated prototypes to production-ready components targeting the global data centre sustainability market.</p>
+  </div>
+</div>
+
+<section style="background:var(--bg);">
+  <div class="wrap">
+    <div class="ker-grid">
+
+      <!-- KER-1 -->
+      <div class="ker-card-full reveal">
+        <div class="ker-card-header">
+          <div class="ker-id-badge">KER<br>1</div>
+          <div class="ker-hdr-text">
+            <div class="ker-hdr-id">KEY EXPLOITABLE RESULT 1</div>
+            <div class="ker-hdr-title">Energy Source Optimisation Engine</div>
+            <div class="ker-hdr-wp">AI-driven energy source selection with real-time grid signal integration</div>
+          </div>
+        </div>
+        <div class="ker-card-body">
+          <div>
+            <p class="ker-desc">A hybrid scheduling engine that dynamically selects energy sources for data centre operations based on real-time grid signals, carbon intensity data, and renewable availability. The engine continuously balances operational SLAs against energy cost and carbon footprint, enabling data centres to minimise their environmental impact without compromising performance.</p>
+          </div>
+          <div class="ker-sidebar">
+            <div class="ks-block">
+              <div class="ks-label">Target Markets</div>
+              <div class="ks-content">Cloud data centres · Colocation facilities · Edge compute operators · Managed service providers</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KER-2 -->
+      <div class="ker-card-full reveal" style="transition-delay:.05s;">
+        <div class="ker-card-header">
+          <div class="ker-id-badge">KER<br>2</div>
+          <div class="ker-hdr-text">
+            <div class="ker-hdr-id">KEY EXPLOITABLE RESULT 2</div>
+            <div class="ker-hdr-title">Green Energy Forecasting Module</div>
+            <div class="ker-hdr-wp">Advanced AI forecasting for renewable energy availability prediction</div>
+          </div>
+        </div>
+        <div class="ker-card-body">
+          <div>
+            <p class="ker-desc">An advanced deep learning forecasting system that predicts renewable energy availability hours ahead, enabling workload scheduling to be aligned with green energy windows. Integrates weather data, historical grid mix, and seasonal patterns to support proactive carbon-aware scheduling decisions and help data centres shift operations toward renewable energy sources.</p>
+          </div>
+          <div class="ker-sidebar">
+            <div class="ks-block">
+              <div class="ks-label">Target Markets</div>
+              <div class="ks-content">Energy managers · Sustainability officers · Grid operators · Data centre operators</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KER-3 -->
+      <div class="ker-card-full reveal" style="transition-delay:.1s;">
+        <div class="ker-card-header">
+          <div class="ker-id-badge">KER<br>3</div>
+          <div class="ker-hdr-text">
+            <div class="ker-hdr-id">KEY EXPLOITABLE RESULT 3</div>
+            <div class="ker-hdr-title">Dynamic Energy Pricing Mechanism</div>
+            <div class="ker-hdr-wp">AI-driven compute-job pricing aligned with real-time energy costs</div>
+          </div>
+        </div>
+        <div class="ker-card-body">
+          <div>
+            <p class="ker-desc">An AI engine that dynamically adjusts pricing for compute jobs based on real-time energy cost and carbon intensity. By creating market incentives aligned with green energy availability, it enables colocation operators and cloud platforms to transparently charge customers more for carbon-intensive compute and less during renewable windows — creating a market mechanism for demand shifting.</p>
+          </div>
+          <div class="ker-sidebar">
+            <div class="ks-block">
+              <div class="ks-label">Target Markets</div>
+              <div class="ks-content">Colocation operators · Cloud platforms · Energy brokers · Green tariff providers</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KER-4 -->
+      <div class="ker-card-full reveal" style="transition-delay:.05s;">
+        <div class="ker-card-header">
+          <div class="ker-id-badge">KER<br>4</div>
+          <div class="ker-hdr-text">
+            <div class="ker-hdr-id">KEY EXPLOITABLE RESULT 4</div>
+            <div class="ker-hdr-title">Hardware Optimisation Engine</div>
+            <div class="ker-hdr-wp">Dynamic workload-to-hardware allocation for maximum energy efficiency</div>
+          </div>
+        </div>
+        <div class="ker-card-body">
+          <div>
+            <p class="ker-desc">An intelligent hardware allocation engine that dynamically maps compute workloads to the most energy-efficient hardware resources available. By considering thermal state, current power draw, and workload characteristics, it minimises cooling overhead and power consumption per compute job without impacting performance SLAs. Supports heterogeneous hardware environments including CPUs, GPUs, and specialised AI accelerators.</p>
+          </div>
+          <div class="ker-sidebar">
+            <div class="ks-block">
+              <div class="ks-label">Target Markets</div>
+              <div class="ks-content">HPC centres · AI cloud providers · Research institutions · Colocation operators</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KER-5 -->
+      <div class="ker-card-full reveal" style="transition-delay:.1s;">
+        <div class="ker-card-header">
+          <div class="ker-id-badge">KER<br>5</div>
+          <div class="ker-hdr-text">
+            <div class="ker-hdr-id">KEY EXPLOITABLE RESULT 5</div>
+            <div class="ker-hdr-title">Integrated System Demonstrator</div>
+            <div class="ker-hdr-wp">Vendor-independent cross-vendor interoperability showcase</div>
+          </div>
+        </div>
+        <div class="ker-card-body">
+          <div>
+            <p class="ker-desc">A comprehensive system demonstration that validates the full iDT4GDC stack operating across heterogeneous, multi-vendor data centre hardware. It serves as the reference implementation proving that the open API ecosystem functions across real-world diverse infrastructure environments, and provides reference architecture documentation for third-party adopters.</p>
+          </div>
+          <div class="ker-sidebar">
+            <div class="ks-block">
+              <div class="ks-label">Target Markets</div>
+              <div class="ks-content">Multi-vendor data centre operators · Standards bodies · System integrators · DCIM vendors</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KER-6 -->
+      <div class="ker-card-full reveal" style="transition-delay:.05s;">
+        <div class="ker-card-header">
+          <div class="ker-id-badge">KER<br>6</div>
+          <div class="ker-hdr-text">
+            <div class="ker-hdr-id">KEY EXPLOITABLE RESULT 6</div>
+            <div class="ker-hdr-title">iDT4GDC Backend &amp; DCIM Digital Twin Integration</div>
+            <div class="ker-hdr-wp">Production-ready open-source backend — the technology foundation</div>
+          </div>
+        </div>
+        <div class="ker-card-body">
+          <div>
+            <p class="ker-desc">The production-ready core backend platform that underpins the entire iDT4GDC system. Implemented as an open-source component with dual licensing (community + commercial), it provides the API gateway, data management layer, and DCIM digital twin integration that all other components depend on. Deployed via containerised infrastructure for maximum portability across environments.</p>
+          </div>
+          <div class="ker-sidebar">
+            <div class="ks-block">
+              <div class="ks-label">Target Markets</div>
+              <div class="ks-content">DCIM software vendors · Enterprise IT · Open-source community · Cloud operators</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KER-7 -->
+      <div class="ker-card-full reveal" style="transition-delay:.1s;">
+        <div class="ker-card-header">
+          <div class="ker-id-badge">KER<br>7</div>
+          <div class="ker-hdr-text">
+            <div class="ker-hdr-id">KEY EXPLOITABLE RESULT 7</div>
+            <div class="ker-hdr-title">Integrated Dashboard</div>
+            <div class="ker-hdr-wp">Unified real-time visualisation across power, cooling, workloads, and carbon KPIs</div>
+          </div>
+        </div>
+        <div class="ker-card-body">
+          <div>
+            <p class="ker-desc">A production-ready integrated dashboard providing unified real-time and historical views of power consumption, cooling performance, workload distribution, and sustainability KPIs. Designed for data centre operations teams, sustainability managers, and executive reporting, it consolidates previously siloed data into a single actionable interface with carbon benchmarking capabilities and role-based views.</p>
+          </div>
+          <div class="ker-sidebar">
+            <div class="ks-block">
+              <div class="ks-label">Target Markets</div>
+              <div class="ks-content">DC operations teams · C-suite sustainability · Regulatory compliance · Cloud operators · MSPs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-main">
+    <div>
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=700,fit=crop,q=95/m7V5Qp7Ly3Uk0kDa/idit-birlesik-d957BPD1pqS8rWX9.png" alt="iDT4GDC" class="footer-logo">
+      <p class="footer-desc">Intelligent Digital Twin for Green Data Centres — EUREKA ITEA4 project SUS2022-042.</p>
+      <div class="footer-badges"><span class="f-badge">EUREKA</span><span class="f-badge">ITEA4</span><span class="f-badge">SUS2022-042</span></div>
+    </div>
+    <div class="footer-col"><h4>Project</h4><ul><li><a href="index.html">Home</a></li><li><a href="technology.html">Technology</a></li><li><a href="work-packages.html">Work Packages</a></li><li><a href="results.html">Key Results</a></li><li><a href="achievements.html">Progress</a></li></ul></div>
+    <div class="footer-col"><h4>Consortium</h4><ul><li><a href="consortium.html">Partners</a></li><li><a href="consortium.html#innova">Innova Integra</a></li><li><a href="consortium.html#bitnet">BitNet Bilişim</a></li><li><a href="consortium.html#green-continuum">Green Continuum</a></li></ul></div>
+    <div class="footer-col"><h4>Resources</h4><ul><li><a href="achievements.html">Deliverables</a></li><li><a href="contact.html">Contact</a></li><li><a href="https://itea4.org/project/idt4gdc.html" target="_blank" rel="noopener">ITEA4 Page ↗</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-disclaimer">© 2026 iDT4GDC Consortium. Co-funded under EUREKA ITEA4 (SUS2022-042). Views expressed are those of the consortium and do not represent EUREKA or national funding agencies.</p>
+    <span class="footer-id">iDT4GDC · SUS2022-042</span>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technology — iDT4GDC</title>
+<meta name="description" content="Seven core technological innovations powering the iDT4GDC platform for climate-neutral data centres.">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.tech-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+.tech-intro-visual {
+  background: linear-gradient(135deg, var(--green-bg), var(--teal-bg));
+  border: 1px solid var(--green-border);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.tech-stack-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: .625rem;
+}
+.stack-layer {
+  padding: .875rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-m);
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-align: center;
+}
+.sl-1 { background: var(--navy); color: #fff; }
+.sl-2 { background: rgba(11,26,46,.08); color: var(--navy); border: 1px solid var(--border); }
+.sl-3 { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+.sl-4 { background: var(--teal-bg); color: var(--teal); border: 1px solid #9CE0D8; }
+.stack-arrow { text-align: center; font-size: .875rem; color: var(--text-light); line-height: 1; }
+
+/* Innovation cards */
+.innovations-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+.innov-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.75rem;
+  transition: all var(--transition);
+  position: relative;
+}
+.innov-card:hover {
+  border-color: var(--green-border);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+.innov-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: linear-gradient(90deg, var(--green), #00C860);
+  opacity: 0; transition: opacity var(--transition);
+}
+.innov-card:hover::before { opacity: 1; }
+.innov-num { font-family: var(--font-m); font-size: .5625rem; color: var(--green); letter-spacing: .12em; margin-bottom: 1rem; }
+.innov-icon { font-size: 1.875rem; margin-bottom: 1rem; display: block; }
+.innov-title { font-family: var(--font-d); font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: .75rem; line-height: 1.3; }
+.innov-desc { font-size: .8125rem; color: var(--text-light); line-height: 1.65; }
+
+/* Problem vs Solution */
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.prob-side {
+  background: rgba(220,60,60,.04);
+  border: 1px solid rgba(220,60,60,.15);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+}
+.sol-side {
+  background: var(--green-bg);
+  border: 1px solid var(--green-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+}
+.ps-title { font-family: var(--font-d); font-size: 1.0625rem; font-weight: 700; margin-bottom: 1.25rem; }
+.prob-side .ps-title { color: #C0392B; }
+.sol-side .ps-title { color: var(--green); }
+.ps-list { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+.ps-item { display: flex; gap: .75rem; align-items: flex-start; font-size: .875rem; color: var(--text-mid); line-height: 1.55; }
+.ps-dot { flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; margin-top: .375rem; }
+.prob-side .ps-dot { background: #C0392B; }
+.sol-side .ps-dot { background: var(--green); }
+
+/* Competitive table */
+.comp-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+.comp-table th {
+  padding: .875rem 1.25rem;
+  text-align: left;
+  font-family: var(--font-m);
+  font-size: .625rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  background: var(--bg-alt);
+  border-bottom: 2px solid var(--border);
+}
+.comp-table td {
+  padding: 1rem 1.25rem;
+  font-size: .875rem;
+  color: var(--text-mid);
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: top;
+}
+.comp-table tr:last-child td { border-bottom: none; }
+.comp-table .idt { color: var(--green); font-weight: 600; }
+.check { color: var(--green); }
+.cross { color: #D9534F; }
+.partial { color: #E8A317; }
+
+@media (max-width: 1000px) { .innovations-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px) {
+  .tech-intro-grid, .problem-grid { grid-template-columns: 1fr; }
+  .innovations-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-img" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=700,fit=crop,q=95/m7V5Qp7Ly3Uk0kDa/idit-birlesik-d957BPD1pqS8rWX9.png" alt="iDT4GDC">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="technology.html">Technology</a></li>
+    <li><a href="work-packages.html">Work Packages</a></li>
+    <li><a href="results.html">Results</a></li>
+    <li><a href="consortium.html">Consortium</a></li>
+    <li><a href="achievements.html">Progress</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<nav id="nav-drawer">
+  <a href="index.html">Home</a><a href="technology.html">Technology</a><a href="work-packages.html">Work Packages</a>
+  <a href="results.html">Results</a><a href="consortium.html">Consortium</a><a href="achievements.html">Progress</a>
+  <a href="contact.html" class="nav-cta">Contact</a>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <span class="page-hero-label">Innovation</span>
+    <h1 class="page-hero-title">Technology</h1>
+    <p class="page-hero-sub">Seven core technological advances combining digital twin engineering, AI/ML optimisation, and open standards to redefine data centre sustainability.</p>
+  </div>
+</div>
+
+<!-- Problem vs Solution -->
+<section style="background:var(--bg);">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="s-label">The Problem</span>
+      <h2 class="s-title">Why Current Tools Fall Short</h2>
+    </div>
+    <div class="problem-grid reveal" style="transition-delay:.1s; margin-top:2rem;">
+      <div class="prob-side">
+        <div class="ps-title">❌ Today's Challenges</div>
+        <ul class="ps-list">
+          <li class="ps-item"><span class="ps-dot"></span><strong>Data centres consume 2–3% of global electricity</strong> with demand accelerating due to AI and cloud growth.</li>
+          <li class="ps-item"><span class="ps-dot"></span><strong>Siloed management tools</strong> handle cooling, power, and compute in isolation with no unified view.</li>
+          <li class="ps-item"><span class="ps-dot"></span><strong>Vendor lock-in</strong> through proprietary APIs prevents cross-system optimisation.</li>
+          <li class="ps-item"><span class="ps-dot"></span><strong>PUE-only focus</strong> ignores carbon source; Carbon Usage Effectiveness (CUE) is unmeasured.</li>
+          <li class="ps-item"><span class="ps-dot"></span><strong>Reactive operations</strong> respond to failures rather than predicting and preventing them.</li>
+        </ul>
+      </div>
+      <div class="sol-side">
+        <div class="ps-title">✓ The iDT4GDC Solution</div>
+        <ul class="ps-list">
+          <li class="ps-item"><span class="ps-dot"></span><strong>Unified AI platform</strong> connecting cooling, power, compute, workloads, and sustainability KPIs.</li>
+          <li class="ps-item"><span class="ps-dot"></span><strong>Open architecture</strong> with standard REST APIs enabling any vendor to integrate.</li>
+          <li class="ps-item"><span class="ps-dot"></span><strong>Real-time digital twin</strong> physics-based simulation for predictive, proactive management.</li>
+          <li class="ps-item"><span class="ps-dot"></span><strong>CUE + renewable integration</strong> — not just efficiency but climate neutrality as the target.</li>
+          <li class="ps-item"><span class="ps-dot"></span><strong>AI/ML-driven decisions</strong> from intelligent workload scheduling to dynamic energy pricing.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Seven Innovations -->
+<section style="background:var(--bg-alt);">
+  <div class="wrap">
+    <div class="s-hd reveal">
+      <span class="s-label">Core Innovations</span>
+      <h2 class="s-title">Seven Technological Advances</h2>
+      <p class="s-sub">Each innovation addresses a distinct gap in current data centre management, together forming a comprehensive platform.</p>
+    </div>
+
+    <div class="innovations-grid reveal" style="transition-delay:.1s;">
+      <div class="innov-card">
+        <div class="innov-num">01</div>
+        <span class="innov-icon">🔮</span>
+        <div class="innov-title">Open Digital Twin Architecture</div>
+        <div class="innov-desc">Real-time physics-based simulation of thermal dynamics, power distribution, and compute layers in a unified, vendor-agnostic platform. Connects physical infrastructure to its digital counterpart with sub-second update cycles.</div>
+      </div>
+      <div class="innov-card">
+        <div class="innov-num">02</div>
+        <span class="innov-icon">🧠</span>
+        <div class="innov-title">AI/ML-Driven Scheduling</div>
+        <div class="innov-desc">Constraint-based solvers, deep neural networks, and reinforcement learning jointly optimise workload placement decisions in real time. Balances performance SLAs with energy cost and carbon intensity simultaneously.</div>
+      </div>
+      <div class="innov-card">
+        <div class="innov-num">03</div>
+        <span class="innov-icon">☀️</span>
+        <div class="innov-title">Green Energy Forecasting</div>
+        <div class="innov-desc">Advanced deep learning forecasting models predict renewable energy availability hours ahead, enabling proactive carbon-aware workload scheduling. Integrates grid carbon intensity signals for real-time decisions.</div>
+      </div>
+      <div class="innov-card">
+        <div class="innov-num">04</div>
+        <span class="innov-icon">💹</span>
+        <div class="innov-title">Dynamic Energy Pricing</div>
+        <div class="innov-desc">An AI-driven pricing engine aligns compute-job pricing with real-time energy costs and carbon intensity. Creates market incentives for customers to shift workloads to green energy windows automatically.</div>
+      </div>
+      <div class="innov-card">
+        <div class="innov-num">05</div>
+        <span class="innov-icon">🖥️</span>
+        <div class="innov-title">Hardware-Aware Workload Placement</div>
+        <div class="innov-desc">Dynamically maps AI training, HPC, and cloud workloads to the most energy-efficient hardware. Considers thermal state, power draw, and workload characteristics to minimise cooling overhead per job.</div>
+      </div>
+      <div class="innov-card">
+        <div class="innov-num">06</div>
+        <span class="innov-icon">🔗</span>
+        <div class="innov-title">Cross-Vendor Interoperability</div>
+        <div class="innov-desc">Open REST APIs enable any DCIM, BMS, cooling controller, or cloud orchestrator to integrate without proprietary adapters. No vendor lock-in — works across heterogeneous hardware environments.</div>
+      </div>
+      <div class="innov-card">
+        <div class="innov-num">07</div>
+        <span class="innov-icon">🌿</span>
+        <div class="innov-title">EU Green Deal Alignment</div>
+        <div class="innov-desc">Built-in compliance with Climate-Neutral Data Centre Pact commitments, ETSI EN 303 470 standards, and EU sustainability reporting frameworks. Supports Taxonomy Regulation disclosures.</div>
+      </div>
+      <div class="innov-card" style="background:linear-gradient(135deg,var(--green-bg),var(--teal-bg)); border-color:var(--green-border);">
+        <div class="innov-num" style="color:var(--teal);">KEY</div>
+        <span class="innov-icon">🏆</span>
+        <div class="innov-title" style="color:var(--navy);">Open-Source Foundation</div>
+        <div class="innov-desc">Dual licensing model (community + commercial) lowers adoption barriers while enabling sustainable business models. Community-driven innovation accelerates development beyond the consortium.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Technology Stack -->
+<section style="background:var(--bg);">
+  <div class="wrap">
+    <div class="tech-intro-grid reveal">
+      <div>
+        <span class="s-label">Architecture</span>
+        <h2 class="s-title">Platform Stack</h2>
+        <p class="s-sub">The iDT4GDC platform is built on a Service-Oriented Architecture (SOA) with open APIs at every layer, ensuring maximum interoperability.</p>
+        <div style="margin-top:2rem; display:flex; flex-direction:column; gap:1rem;">
+          <div style="display:flex; gap:1rem; align-items:flex-start;">
+            <span style="font-size:1.25rem;">📊</span>
+            <div>
+              <div style="font-family:var(--font-d);font-weight:600;font-size:.9375rem;color:var(--navy);margin-bottom:.25rem;">Unified Dashboard (KER-7)</div>
+              <div style="font-size:.8125rem;color:var(--text-light);line-height:1.55;">Real-time visualisation of power, cooling, workloads, carbon KPIs</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:1rem; align-items:flex-start;">
+            <span style="font-size:1.25rem;">⚙️</span>
+            <div>
+              <div style="font-family:var(--font-d);font-weight:600;font-size:.9375rem;color:var(--navy);margin-bottom:.25rem;">AI Optimisation Engine (KER-1, 2, 3, 4)</div>
+              <div style="font-size:.8125rem;color:var(--text-light);line-height:1.55;">ML models for scheduling, forecasting, pricing, and hardware allocation</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:1rem; align-items:flex-start;">
+            <span style="font-size:1.25rem;">🔮</span>
+            <div>
+              <div style="font-family:var(--font-d);font-weight:600;font-size:.9375rem;color:var(--navy);margin-bottom:.25rem;">Digital Twin Engine (WP2)</div>
+              <div style="font-size:.8125rem;color:var(--text-light);line-height:1.55;">Physics-based real-time simulation of the full data centre</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:1rem; align-items:flex-start;">
+            <span style="font-size:1.25rem;">🔧</span>
+            <div>
+              <div style="font-family:var(--font-d);font-weight:600;font-size:.9375rem;color:var(--navy);margin-bottom:.25rem;">Backend & DCIM Integration (KER-6)</div>
+              <div style="font-size:.8125rem;color:var(--text-light);line-height:1.55;">Open-source SOA backend with full DCIM digital twin integration</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tech-intro-visual">
+        <div style="font-family:var(--font-m);font-size:.6875rem;color:var(--text-light);margin-bottom:1.5rem;letter-spacing:.1em;text-transform:uppercase;">iDT4GDC Platform Layers</div>
+        <div class="tech-stack-diagram">
+          <div class="stack-layer sl-3">📊 Integrated Dashboard · KER-7</div>
+          <div class="stack-arrow">↕</div>
+          <div class="stack-layer sl-1">🧠 AI Optimisation Layer · KER-1,2,3,4</div>
+          <div class="stack-arrow">↕</div>
+          <div class="stack-layer sl-4">🔮 Digital Twin Engine · WP2</div>
+          <div class="stack-arrow">↕</div>
+          <div class="stack-layer sl-2">⚙️ Backend & API Gateway · KER-6</div>
+          <div class="stack-arrow">↕</div>
+          <div class="stack-layer sl-1">🏗️ Physical Infrastructure (Any Vendor)</div>
+        </div>
+        <div style="margin-top:1.5rem; font-size:.75rem; color:var(--text-light);">Open REST APIs at every layer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Competitive Comparison -->
+<section style="background:var(--bg-alt);">
+  <div class="wrap">
+    <div class="s-hd reveal">
+      <span class="s-label">Market Positioning</span>
+      <h2 class="s-title">Competitive Advantage</h2>
+      <p class="s-sub">iDT4GDC provides capabilities that leading proprietary solutions cannot match, particularly in carbon-awareness and open interoperability.</p>
+    </div>
+    <div class="reveal" style="transition-delay:.1s; overflow-x:auto;">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th class="idt">iDT4GDC</th>
+            <th>IBM Maximo</th>
+            <th>Schneider EcoStruxure</th>
+            <th>Sunbird DCIM</th>
+            <th>EkkoSense</th>
+            <th>Siemens Building X</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Open-source core</td>
+            <td class="check">✓ Dual license</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+          </tr>
+          <tr>
+            <td>Carbon-aware scheduling (CUE)</td>
+            <td class="check">✓ Native</td>
+            <td class="cross">✗</td>
+            <td class="partial">~ Partial</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+            <td class="partial">~ Partial</td>
+          </tr>
+          <tr>
+            <td>Real-time digital twin</td>
+            <td class="check">✓ Physics-based</td>
+            <td class="partial">~ Asset model</td>
+            <td class="partial">~ Facilities only</td>
+            <td class="partial">~ Monitoring</td>
+            <td class="partial">~ Thermal only</td>
+            <td class="partial">~ Facilities</td>
+          </tr>
+          <tr>
+            <td>Compute-layer integration</td>
+            <td class="check">✓ Full stack</td>
+            <td class="partial">~ Limited</td>
+            <td class="cross">✗ Facilities only</td>
+            <td class="partial">~ DCIM only</td>
+            <td class="cross">✗ Thermal only</td>
+            <td class="cross">✗ Facilities only</td>
+          </tr>
+          <tr>
+            <td>AI-driven workload scheduling</td>
+            <td class="check">✓ AI-driven</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+            <td class="partial">~ Rule-based</td>
+            <td class="cross">✗</td>
+          </tr>
+          <tr>
+            <td>Cross-vendor open APIs</td>
+            <td class="check">✓ Open REST</td>
+            <td class="cross">✗ Proprietary</td>
+            <td class="cross">✗ Proprietary</td>
+            <td class="partial">~ Limited</td>
+            <td class="cross">✗ Proprietary</td>
+            <td class="cross">✗ Proprietary</td>
+          </tr>
+          <tr>
+            <td>Green energy forecasting</td>
+            <td class="check">✓ Advanced AI</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+            <td class="cross">✗</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-main">
+    <div>
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=700,fit=crop,q=95/m7V5Qp7Ly3Uk0kDa/idit-birlesik-d957BPD1pqS8rWX9.png" alt="iDT4GDC" class="footer-logo">
+      <p class="footer-desc">Intelligent Digital Twin for Green Data Centres — EUREKA ITEA4 project SUS2022-042.</p>
+      <div class="footer-badges"><span class="f-badge">EUREKA</span><span class="f-badge">ITEA4</span><span class="f-badge">SUS2022-042</span></div>
+    </div>
+    <div class="footer-col"><h4>Project</h4><ul><li><a href="index.html">Home</a></li><li><a href="technology.html">Technology</a></li><li><a href="work-packages.html">Work Packages</a></li><li><a href="results.html">Key Results</a></li><li><a href="achievements.html">Progress</a></li></ul></div>
+    <div class="footer-col"><h4>Consortium</h4><ul><li><a href="consortium.html">Partners</a></li><li><a href="consortium.html#innova">Innova Integra</a></li><li><a href="consortium.html#bitnet">BitNet Bilişim</a></li><li><a href="consortium.html#green-continuum">Green Continuum</a></li></ul></div>
+    <div class="footer-col"><h4>Resources</h4><ul><li><a href="achievements.html">Deliverables</a></li><li><a href="contact.html">Contact</a></li><li><a href="https://itea4.org/project/idt4gdc.html" target="_blank" rel="noopener">ITEA4 Page ↗</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-disclaimer">© 2026 iDT4GDC Consortium. Co-funded under EUREKA ITEA4 (SUS2022-042). Views expressed are those of the consortium and do not represent EUREKA or national funding agencies.</p>
+    <span class="footer-id">iDT4GDC · SUS2022-042</span>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

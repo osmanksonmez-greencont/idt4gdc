@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iDT4GDC — Intelligent Digital Twin for Green Data Centres</title>
+<meta name="description" content="EUREKA ITEA4 project developing an open AI-powered digital twin platform for climate-neutral data centres. Project SUS2022-042.">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ── Hero ─────────────────────────────────────────── */
+#hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 5vw;
+  background: linear-gradient(160deg, #F0F6FF 0%, #EDFFF5 50%, #F3F7FC 100%);
+}
+#hero-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  text-align: center;
+  max-width: 1000px;
+  padding: 8rem 0 3rem;
+}
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .375rem .875rem;
+  background: var(--green-bg);
+  border: 1px solid var(--green-border);
+  border-radius: 100px;
+  font-family: var(--font-m);
+  font-size: .6875rem;
+  color: var(--green);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 2.25rem;
+  animation: h-in .9s ease both;
+}
+.hero-dot {
+  width: 5px; height: 5px;
+  background: var(--green); border-radius: 50%;
+  animation: blink 2.2s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+.hero-h1 {
+  font-family: var(--font-d);
+  font-size: clamp(2.75rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -.04em;
+  color: var(--navy);
+  margin-bottom: 1.5rem;
+  animation: h-in .9s .18s ease both;
+}
+.hero-h1 .g { color: var(--green); }
+.hero-sub {
+  font-size: clamp(1rem, 1.8vw, 1.1875rem);
+  font-weight: 300;
+  color: var(--text-light);
+  line-height: 1.7;
+  max-width: 660px;
+  margin: 0 auto 2.5rem;
+  animation: h-in .9s .32s ease both;
+}
+.hero-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .875rem;
+  flex-wrap: wrap;
+  animation: h-in .9s .46s ease both;
+}
+.hero-meta {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  margin-top: 4rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: rgba(255,255,255,.7);
+  backdrop-filter: blur(12px);
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  animation: h-in .9s .6s ease both;
+}
+.hero-meta-item {
+  padding: .875rem 1.75rem;
+  display: flex; flex-direction: column;
+  align-items: center; gap: .25rem;
+  border-right: 1px solid var(--border);
+}
+.hero-meta-item:last-child { border-right: none; }
+.m-label { font-family: var(--font-m); font-size: .5625rem; color: var(--text-light); text-transform: uppercase; letter-spacing: .12em; }
+.m-value { font-family: var(--font-d); font-size: .875rem; font-weight: 700; color: var(--navy); }
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  animation: h-in .9s .75s ease both;
+}
+.scroll-hint span { font-family: var(--font-m); font-size: .5625rem; color: var(--text-light); text-transform: uppercase; letter-spacing: .15em; }
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--green), transparent);
+  animation: scroll-anim 1.8s ease-in-out infinite;
+}
+@keyframes scroll-anim { 0%{opacity:1;transform:translateY(0)} 100%{opacity:0;transform:translateY(14px)} }
+@keyframes h-in { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── Pillars ──────────────────────────────────────── */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.pillar-card {
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition);
+}
+.pillar-card:hover {
+  border-color: var(--green-border);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+.pillar-icon { font-size: 2rem; margin-bottom: .75rem; display: block; }
+.pillar-name { font-family: var(--font-d); font-size: .9375rem; font-weight: 700; color: var(--navy); margin-bottom: .375rem; }
+.pillar-desc { font-size: .75rem; color: var(--text-light); line-height: 1.55; }
+
+/* ── Stats ────────────────────────────────────────── */
+#stats { background: var(--navy); }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+}
+.stat-block {
+  padding: 3rem 2.5rem;
+  border-right: 1px solid rgba(255,255,255,.08);
+  position: relative;
+  overflow: hidden;
+}
+.stat-block:last-child { border-right: none; }
+.stat-block::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--green), #00C860);
+}
+.stat-num {
+  font-family: var(--font-d);
+  font-size: 3rem; font-weight: 800;
+  letter-spacing: -.05em; line-height: 1;
+  color: #fff; margin-bottom: .5rem;
+}
+.stat-num span { color: var(--green-btn); }
+.stat-label { font-size: .875rem; color: rgba(255,255,255,.45); line-height: 1.5; }
+
+/* ── Quick links ──────────────────────────────────── */
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.quick-card {
+  padding: 2rem 1.75rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: all var(--transition);
+  display: block;
+}
+.quick-card:hover {
+  border-color: var(--green-border);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+.qc-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+.qc-title { font-family: var(--font-d); font-size: 1.125rem; font-weight: 700; color: var(--navy); margin-bottom: .5rem; }
+.qc-desc { font-size: .875rem; color: var(--text-light); line-height: 1.6; margin-bottom: 1.25rem; }
+.qc-link { font-family: var(--font-m); font-size: .6875rem; color: var(--green); letter-spacing: .05em; display: flex; align-items: center; gap: .375rem; }
+
+/* ── News ─────────────────────────────────────────── */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.news-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  transition: all var(--transition);
+}
+.news-card:hover { border-color: var(--green-border); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.news-date { font-family: var(--font-m); font-size: .625rem; color: var(--text-light); letter-spacing: .08em; text-transform: uppercase; margin-bottom: .75rem; }
+.news-title { font-family: var(--font-d); font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: .625rem; line-height: 1.35; }
+.news-body { font-size: .875rem; color: var(--text-light); line-height: 1.65; }
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 1000px) { .pillars-grid { grid-template-columns: repeat(3, 1fr); } .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 820px) { .quick-grid, .news-grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) {
+  .pillars-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: 1fr; }
+  .hero-meta { flex-wrap: wrap; }
+  .hero-meta-item { width: 50%; border-right: none; border-bottom: 1px solid var(--border); }
+  .hero-meta-item:nth-child(odd) { border-right: 1px solid var(--border); }
+  .hero-meta-item:nth-last-child(-n+2) { border-bottom: none; }
+  .hero-btns { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Navigation ──────────────────────────────────── -->
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-img" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=700,fit=crop,q=95/m7V5Qp7Ly3Uk0kDa/idit-birlesik-d957BPD1pqS8rWX9.png" alt="iDT4GDC">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="technology.html">Technology</a></li>
+    <li><a href="work-packages.html">Work Packages</a></li>
+    <li><a href="results.html">Results</a></li>
+    <li><a href="consortium.html">Consortium</a></li>
+    <li><a href="achievements.html">Progress</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile drawer -->
+<nav id="nav-drawer">
+  <a href="index.html">Home</a>
+  <a href="technology.html">Technology</a>
+  <a href="work-packages.html">Work Packages</a>
+  <a href="results.html">Results</a>
+  <a href="consortium.html">Consortium</a>
+  <a href="achievements.html">Progress</a>
+  <a href="contact.html" class="nav-cta">Contact</a>
+</nav>
+
+<!-- ── Hero ────────────────────────────────────────── -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+
+  <div class="hero-content">
+    <div class="hero-pill">
+      <span class="hero-dot"></span>
+      EUREKA ITEA4 &nbsp;·&nbsp; SUS2022-042 &nbsp;·&nbsp; Active
+    </div>
+
+    <h1 class="hero-h1">
+      Intelligent Digital Twin<br>
+      for <span class="g">Green Data Centres</span>
+    </h1>
+
+    <p class="hero-sub">
+      An open, AI-powered platform enabling data centres to achieve
+      climate neutrality through real-time digital twin simulation,
+      machine learning optimisation, and renewable energy integration.
+    </p>
+
+    <div class="hero-btns">
+      <a href="technology.html" class="btn-primary">
+        Explore the Technology
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="results.html" class="btn-outline">View Key Results</a>
+    </div>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="m-label">Programme</span>
+        <span class="m-value">EUREKA ITEA4</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="m-label">Project No.</span>
+        <span class="m-value">SUS2022-042</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="m-label">Duration</span>
+        <span class="m-value">36 Months</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="m-label">Countries</span>
+        <span class="m-value">UK &amp; Turkey</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ── About ────────────────────────────────────────── -->
+<section id="about" style="background:var(--bg);">
+  <div class="wrap">
+    <div class="reveal" style="max-width:800px; margin:0 auto; text-align:center;">
+      <span class="s-label">About the Project</span>
+      <h2 class="s-title">Climate-Neutral Data Centre Technologies</h2>
+      <p style="font-size:1.125rem; color:var(--text-mid); line-height:1.75; margin-top:1.25rem;">
+        iDT4GDC aims to develop Artificial Intelligence and Digital Twin technologies into a cloud AI platform to <strong>digitalise, optimise, and automate</strong> data centre operations for sustainability purposes.
+      </p>
+      <p style="font-size:1.0625rem; color:var(--text-light); line-height:1.75; margin-top:1rem;">
+        iDT4GDC will guide data centre operations and management towards a sustainable future along five pillars of sustainability.
+      </p>
+    </div>
+
+    <div class="pillars-grid reveal" style="transition-delay:.1s;">
+      <div class="pillar-card">
+        <span class="pillar-icon">⚡</span>
+        <div class="pillar-name">Power</div>
+        <div class="pillar-desc">AI-optimised power distribution and real-time efficiency monitoring</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">🌿</span>
+        <div class="pillar-name">Carbon</div>
+        <div class="pillar-desc">Carbon Usage Effectiveness (CUE) optimisation beyond traditional PUE</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">💧</span>
+        <div class="pillar-name">Water</div>
+        <div class="pillar-desc">Water Usage Effectiveness (WUE) management in cooling systems</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">♻️</span>
+        <div class="pillar-name">Circular Economy</div>
+        <div class="pillar-desc">Hardware lifecycle optimisation and e-waste reduction strategies</div>
+      </div>
+      <div class="pillar-card">
+        <span class="pillar-icon">🏛️</span>
+        <div class="pillar-name">Governance</div>
+        <div class="pillar-desc">EU Green Deal compliance, reporting frameworks, and regulatory alignment</div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:2.5rem;" class="reveal" style="transition-delay:.2s;">
+      <a href="technology.html" class="btn-outline">Learn About Our Technology →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Stats ────────────────────────────────────────── -->
+<section id="stats">
+  <div class="wrap">
+    <div class="stats-grid reveal" data-counter-group>
+      <div class="stat-block">
+        <div class="stat-num"><span>~</span><span class="counter" data-target="3" data-suffix="%">0%</span></div>
+        <div class="stat-label">Of global electricity consumed by data centres — and growing with AI demand</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num"><span class="counter" data-target="7">0</span></div>
+        <div class="stat-label">Key Exploitable Results documented for the global data centre market</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num"><span class="counter" data-target="3">0</span></div>
+        <div class="stat-label">European partner organisations from UK and Turkey driving innovation</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num"><span class="counter" data-target="15">0</span><span style="font-size:1.75rem;">+</span></div>
+        <div class="stat-label">Deliverables completed across all work packages</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Quick links ───────────────────────────────────── -->
+<section style="background:var(--bg-alt);">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="s-label">Explore</span>
+      <h2 class="s-title">What iDT4GDC Delivers</h2>
+    </div>
+    <div class="quick-grid reveal" style="transition-delay:.1s;">
+      <a href="technology.html" class="quick-card">
+        <span class="qc-icon">🔮</span>
+        <div class="qc-title">Technology</div>
+        <div class="qc-desc">Seven core innovations spanning digital twin architecture, AI/ML scheduling, green energy forecasting, and cross-vendor interoperability.</div>
+        <span class="qc-link">Explore Technology →</span>
+      </a>
+      <a href="results.html" class="quick-card">
+        <span class="qc-icon">📊</span>
+        <div class="qc-title">Key Results</div>
+        <div class="qc-desc">Seven documented Key Exploitable Results (KERs) — from validated prototypes to production-ready components targeting the global data centre infrastructure market.</div>
+        <span class="qc-link">View KERs →</span>
+      </a>
+      <a href="work-packages.html" class="quick-card">
+        <span class="qc-icon">🏗️</span>
+        <div class="qc-title">Work Packages</div>
+        <div class="qc-desc">Six interconnected work packages covering system architecture, digital twin engine, AI/ML, hardware, energy management, and exploitation.</div>
+        <span class="qc-link">See Structure →</span>
+      </a>
+      <a href="consortium.html" class="quick-card">
+        <span class="qc-icon">🤝</span>
+        <div class="qc-title">Consortium</div>
+        <div class="qc-desc">Three European partners — Green Continuum (Turkey), BitNet Bilişim (Turkey), and Innova Integra (UK) — combining complementary expertise.</div>
+        <span class="qc-link">Meet the Partners →</span>
+      </a>
+      <a href="achievements.html" class="quick-card">
+        <span class="qc-icon">🎯</span>
+        <div class="qc-title">Progress</div>
+        <div class="qc-desc">Phase 2 active. 2nd ITEA review meeting successfully completed. Fifteen deliverables published across all work packages.</div>
+        <span class="qc-link">View Progress →</span>
+      </a>
+      <a href="contact.html" class="quick-card">
+        <span class="qc-icon">✉️</span>
+        <div class="qc-title">Contact</div>
+        <div class="qc-desc">Interested in collaboration, technology licensing, or research partnership? Reach out to the iDT4GDC consortium coordination team.</div>
+        <span class="qc-link">Get in Touch →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── News ─────────────────────────────────────────── -->
+<section style="background:var(--bg);">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="s-label">Latest Updates</span>
+      <h2 class="s-title">Project News</h2>
+    </div>
+    <div class="news-grid reveal" style="transition-delay:.1s;">
+      <div class="news-card">
+        <div class="news-date">January 2026</div>
+        <div class="news-title">2nd ITEA Review Meeting Successfully Completed</div>
+        <div class="news-body">The second ITEA project review meeting was held on 20 January 2026, demonstrating significant platform progress and readiness across all work packages.</div>
+      </div>
+      <div class="news-card">
+        <div class="news-date">Late 2025</div>
+        <div class="news-title">Exploitable Results Report Published</div>
+        <div class="news-body">The first Exploitable Results Report and IPR Management Report have been formally published, documenting seven Key Exploitable Results across the iDT4GDC platform.</div>
+      </div>
+      <div class="news-card">
+        <div class="news-date">2025</div>
+        <div class="news-title">State-of-the-Art Report Released</div>
+        <div class="news-body">A comprehensive State-of-the-Art report for 2025 has been published, analysing the competitive landscape and positioning iDT4GDC within the global digital twin and data centre market.</div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:2.5rem;" class="reveal" style="transition-delay:.2s;">
+      <p style="font-size:.875rem; color:var(--text-light); margin-bottom:1rem;">Follow the project on social media for real-time updates</p>
+      <div style="display:flex; gap:.875rem; justify-content:center; flex-wrap:wrap;">
+        <a href="https://www.linkedin.com/company/idt4gdc" target="_blank" rel="noopener noreferrer" class="btn-outline" style="font-size:.875rem; padding:.625rem 1.25rem;">
+          LinkedIn ↗
+        </a>
+        <a href="https://x.com/idt4gdc" target="_blank" rel="noopener noreferrer" class="btn-outline" style="font-size:.875rem; padding:.625rem 1.25rem;">
+          X / Twitter ↗
+        </a>
+        <a href="https://itea4.org/project/idt4gdc.html" target="_blank" rel="noopener noreferrer" class="btn-outline" style="font-size:.875rem; padding:.625rem 1.25rem;">
+          ITEA4 Project Page ↗
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ───────────────────────────────────────── -->
+<footer>
+  <div class="footer-main">
+    <div>
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=700,fit=crop,q=95/m7V5Qp7Ly3Uk0kDa/idit-birlesik-d957BPD1pqS8rWX9.png" alt="iDT4GDC" class="footer-logo">
+      <p class="footer-desc">Intelligent Digital Twin for Green Data Centres — an open AI platform for climate-neutral data centre management. Co-funded under EUREKA ITEA4.</p>
+      <div class="footer-badges">
+        <span class="f-badge">EUREKA</span>
+        <span class="f-badge">ITEA4</span>
+        <span class="f-badge">SUS2022-042</span>
+        <span class="f-badge">EU Green Deal</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Project</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="technology.html">Technology</a></li>
+        <li><a href="work-packages.html">Work Packages</a></li>
+        <li><a href="results.html">Key Results</a></li>
+        <li><a href="achievements.html">Progress</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Consortium</h4>
+      <ul>
+        <li><a href="consortium.html">Partners</a></li>
+        <li><a href="consortium.html#green-continuum">Green Continuum</a></li>
+        <li><a href="consortium.html#bitnet">BitNet Bilişim</a></li>
+        <li><a href="consortium.html#innova">Innova Integra</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="achievements.html">Deliverables</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="https://itea4.org/project/idt4gdc.html" target="_blank" rel="noopener">ITEA4 Page ↗</a></li>
+        <li><a href="https://www.linkedin.com/company/idt4gdc" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+        <li><a href="https://x.com/idt4gdc" target="_blank" rel="noopener">X / Twitter ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-disclaimer">© 2026 iDT4GDC Consortium. This project is co-funded under the EUREKA ITEA4 programme (Project No. SUS2022-042). The content of this website reflects the views of the consortium only and does not represent the opinion of EUREKA, ITEA4, or national funding agencies. Project leader: Marco Tiemann (Innova Integra Ltd., United Kingdom).</p>
+    <span class="footer-id">iDT4GDC · SUS2022-042</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

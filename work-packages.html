@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work Packages — iDT4GDC</title>
+<meta name="description" content="Six work packages forming the iDT4GDC project structure — from system architecture and AI to energy management and exploitation.">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.progress-bar-section {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem 2.5rem;
+  margin-bottom: 3rem;
+}
+.prog-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.prog-title { font-family: var(--font-d); font-size: 1rem; font-weight: 600; color: var(--navy); }
+.prog-pct { font-family: var(--font-m); font-size: .875rem; color: var(--green); font-weight: 500; }
+.prog-track { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; margin-bottom: .75rem; }
+.prog-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--green), #00C860); transition: width 1.2s cubic-bezier(.4,0,.2,1); width: 0; }
+.prog-phases { display: flex; justify-content: space-between; font-family: var(--font-m); font-size: .625rem; color: var(--text-light); }
+
+/* WP Cards */
+.wp-grid { display: flex; flex-direction: column; gap: 2rem; }
+
+.wp-card-full {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: box-shadow var(--transition);
+}
+.wp-card-full:hover { box-shadow: var(--shadow-md); }
+
+.wp-card-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.75rem 2rem;
+  border-bottom: 1px solid var(--border-light);
+}
+.wp-badge {
+  width: 52px; height: 52px;
+  background: var(--green);
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-d); font-size: .75rem; font-weight: 800;
+  color: #fff; letter-spacing: .02em; flex-shrink: 0;
+}
+.wp-badge.teal { background: var(--teal); }
+.wp-badge.navy { background: var(--navy); }
+.wp-badge.mid { background: var(--navy-2); }
+
+.wp-header-text {}
+.wp-header-num { font-family: var(--font-m); font-size: .5625rem; color: var(--green); letter-spacing: .12em; margin-bottom: .25rem; }
+.wp-header-title { font-family: var(--font-d); font-size: 1.125rem; font-weight: 700; color: var(--navy); }
+.wp-header-lead { font-size: .8125rem; color: var(--text-light); margin-top: .25rem; }
+
+.wp-status-row { display: flex; gap: .5rem; align-items: center; flex-shrink: 0; }
+
+.wp-card-body { padding: 2rem; }
+.wp-desc-text { font-size: .9375rem; color: var(--text-mid); line-height: 1.7; }
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-img" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=700,fit=crop,q=95/m7V5Qp7Ly3Uk0kDa/idit-birlesik-d957BPD1pqS8rWX9.png" alt="iDT4GDC">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="technology.html">Technology</a></li>
+    <li><a href="work-packages.html">Work Packages</a></li>
+    <li><a href="results.html">Results</a></li>
+    <li><a href="consortium.html">Consortium</a></li>
+    <li><a href="achievements.html">Progress</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<nav id="nav-drawer">
+  <a href="index.html">Home</a><a href="technology.html">Technology</a><a href="work-packages.html">Work Packages</a>
+  <a href="results.html">Results</a><a href="consortium.html">Consortium</a><a href="achievements.html">Progress</a>
+  <a href="contact.html" class="nav-cta">Contact</a>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <span class="page-hero-label">Project Structure</span>
+    <h1 class="page-hero-title">Work Packages</h1>
+    <p class="page-hero-sub">Six interconnected work packages spanning system architecture, digital twin engineering, AI/ML optimisation, hardware, energy management, and exploitation.</p>
+  </div>
+</div>
+
+<section style="background:var(--bg);">
+  <div class="wrap">
+
+    <!-- Progress overview -->
+    <div class="progress-bar-section reveal" data-trl-animate>
+      <div class="prog-header">
+        <div class="prog-title">Overall Project Progress</div>
+        <div class="prog-pct">~Phase 2 of 3 Active</div>
+      </div>
+      <div class="prog-track">
+        <div class="prog-fill trl-fill" data-w="67"></div>
+      </div>
+      <div class="prog-phases">
+        <span>M1 — Foundation</span>
+        <span>M18 — Phase 1 Complete ✓</span>
+        <span>M28 — Phase 2 (Active)</span>
+        <span>M36 — Project End</span>
+      </div>
+    </div>
+
+    <!-- WP Cards -->
+    <div class="wp-grid">
+
+      <!-- WP1 -->
+      <div class="wp-card-full reveal">
+        <div class="wp-card-header">
+          <div class="wp-badge">WP1</div>
+          <div class="wp-header-text">
+            <div class="wp-header-num">WORK PACKAGE 1</div>
+            <div class="wp-header-title">System Architecture &amp; Backend</div>
+            <div class="wp-header-lead">Led by Innova Integra Limited (UK)</div>
+          </div>
+          <div class="wp-status-row">
+            <span class="tag">Complete</span>
+          </div>
+        </div>
+        <div class="wp-card-body">
+          <p class="wp-desc-text">WP1 establishes the foundational system architecture for the entire iDT4GDC platform. It defines a modular, scalable Service-Oriented Architecture (SOA) backend with an open API layer, database management, and container orchestration. The critical DCIM digital twin integration layer developed in this work package connects all other project components into a unified, interoperable platform.</p>
+        </div>
+      </div>
+
+      <!-- WP2 -->
+      <div class="wp-card-full reveal" style="transition-delay:.05s;">
+        <div class="wp-card-header">
+          <div class="wp-badge teal">WP2</div>
+          <div class="wp-header-text">
+            <div class="wp-header-num">WORK PACKAGE 2</div>
+            <div class="wp-header-title">Digital Twin Engine</div>
+            <div class="wp-header-lead">Consortium-wide contribution</div>
+          </div>
+          <div class="wp-status-row"><span class="tag">Complete</span></div>
+        </div>
+        <div class="wp-card-body">
+          <p class="wp-desc-text">WP2 develops the core digital twin engine that creates real-time physics-based simulations of data centre thermal dynamics and power distribution. It provides the simulation backbone that enables predictive optimisation across the platform, giving operators an accurate live model of their infrastructure to support proactive, carbon-aware decision-making.</p>
+        </div>
+      </div>
+
+      <!-- WP3 -->
+      <div class="wp-card-full reveal" style="transition-delay:.1s;">
+        <div class="wp-card-header">
+          <div class="wp-badge navy">WP3</div>
+          <div class="wp-header-text">
+            <div class="wp-header-num">WORK PACKAGE 3</div>
+            <div class="wp-header-title">AI/ML Optimisation Engine</div>
+            <div class="wp-header-lead">Consortium-wide contribution</div>
+          </div>
+          <div class="wp-status-row"><span class="tag">In Progress</span></div>
+        </div>
+        <div class="wp-card-body">
+          <p class="wp-desc-text">WP3 develops the machine learning models that power intelligent decision-making across the platform. It covers workload scheduling optimisation, cooling efficiency algorithms, energy-aware placement, and advanced forecasting models for renewable energy management. The outputs of this work package deliver the core AI capabilities for energy source selection, green energy forecasting, and dynamic energy pricing.</p>
+        </div>
+      </div>
+
+      <!-- WP4 -->
+      <div class="wp-card-full reveal" style="transition-delay:.15s;">
+        <div class="wp-card-header">
+          <div class="wp-badge mid">WP4</div>
+          <div class="wp-header-text">
+            <div class="wp-header-num">WORK PACKAGE 4</div>
+            <div class="wp-header-title">Hardware Optimisation</div>
+            <div class="wp-header-lead">Led by BitNet Bilişim (Turkey)</div>
+          </div>
+          <div class="wp-status-row"><span class="tag">Complete</span></div>
+        </div>
+        <div class="wp-card-body">
+          <p class="wp-desc-text">WP4 develops the hardware-aware workload placement engine that dynamically allocates compute activities to the most energy-efficient hardware. The work package covers hardware profiling, efficiency characterisation, and allocation algorithms that minimise cooling overhead and power consumption per compute job while maintaining performance SLAs. This is the most deliverable-complete work package in the project, with numerous reports and validation milestones reached.</p>
+        </div>
+      </div>
+
+      <!-- WP5 -->
+      <div class="wp-card-full reveal" style="transition-delay:.2s;">
+        <div class="wp-card-header">
+          <div class="wp-badge teal">WP5</div>
+          <div class="wp-header-text">
+            <div class="wp-header-num">WORK PACKAGE 5</div>
+            <div class="wp-header-title">Energy Management</div>
+            <div class="wp-header-lead">Consortium-wide contribution</div>
+          </div>
+          <div class="wp-status-row"><span class="tag tag-teal">Active</span></div>
+        </div>
+        <div class="wp-card-body">
+          <p class="wp-desc-text">WP5 develops the energy management layer that integrates renewable energy sources, demand response mechanisms, and grid-aware scheduling. It is the work package most directly responsible for achieving data centre climate neutrality by optimising Carbon Usage Effectiveness (CUE) and supporting EU Green Deal and Climate-Neutral Data Centre Pact reporting requirements. Energy management modules are currently being integrated with the digital twin engine and AI optimisation layer.</p>
+        </div>
+      </div>
+
+      <!-- WP6 -->
+      <div class="wp-card-full reveal" style="transition-delay:.25s;">
+        <div class="wp-card-header">
+          <div class="wp-badge">WP6</div>
+          <div class="wp-header-text">
+            <div class="wp-header-num">WORK PACKAGE 6</div>
+            <div class="wp-header-title">Communication, Dissemination &amp; Exploitation</div>
+            <div class="wp-header-lead">Led by Green Continuum (Turkey)</div>
+          </div>
+          <div class="wp-status-row"><span class="tag">Active</span></div>
+        </div>
+        <div class="wp-card-body">
+          <p class="wp-desc-text">WP6 manages all external communication, dissemination activities, and exploitation planning for the consortium. Led by Green Continuum, it oversees the identification, documentation, and commercialisation pathway for all Key Exploitable Results. Key outputs include the Communication &amp; Dissemination Plan, IPR management framework, competence and SWOT analysis, and the Exploitable Results reports that document the consortium's innovations and guide their route to market.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-main">
+    <div>
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=700,fit=crop,q=95/m7V5Qp7Ly3Uk0kDa/idit-birlesik-d957BPD1pqS8rWX9.png" alt="iDT4GDC" class="footer-logo">
+      <p class="footer-desc">Intelligent Digital Twin for Green Data Centres — EUREKA ITEA4 project SUS2022-042.</p>
+      <div class="footer-badges"><span class="f-badge">EUREKA</span><span class="f-badge">ITEA4</span><span class="f-badge">SUS2022-042</span></div>
+    </div>
+    <div class="footer-col"><h4>Project</h4><ul><li><a href="index.html">Home</a></li><li><a href="technology.html">Technology</a></li><li><a href="work-packages.html">Work Packages</a></li><li><a href="results.html">Key Results</a></li><li><a href="achievements.html">Progress</a></li></ul></div>
+    <div class="footer-col"><h4>Consortium</h4><ul><li><a href="consortium.html">Partners</a></li><li><a href="consortium.html#innova">Innova Integra</a></li><li><a href="consortium.html#bitnet">BitNet Bilişim</a></li><li><a href="consortium.html#green-continuum">Green Continuum</a></li></ul></div>
+    <div class="footer-col"><h4>Resources</h4><ul><li><a href="achievements.html">Deliverables</a></li><li><a href="contact.html">Contact</a></li><li><a href="https://itea4.org/project/idt4gdc.html" target="_blank" rel="noopener">ITEA4 Page ↗</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-disclaimer">© 2026 iDT4GDC Consortium. Co-funded under EUREKA ITEA4 (SUS2022-042). Views expressed are those of the consortium and do not represent EUREKA or national funding agencies.</p>
+    <span class="footer-id">iDT4GDC · SUS2022-042</span>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

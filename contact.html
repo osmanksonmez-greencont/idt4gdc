@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — iDT4GDC</title>
+<meta name="description" content="Contact the iDT4GDC consortium — enquiries about collaboration, technology licensing, research partnership, or the project.">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 5rem;
+  align-items: start;
+  margin-top: 3rem;
+}
+.contact-info {}
+.ci-section { margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--border-light); }
+.ci-section:last-child { border-bottom: none; margin-bottom: 0; }
+.ci-title { font-family: var(--font-d); font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 1rem; }
+
+.info-row { display: flex; gap: 1rem; margin-bottom: .625rem; align-items: baseline; }
+.ir-label { font-family: var(--font-m); font-size: .625rem; color: var(--text-light); letter-spacing: .08em; text-transform: uppercase; min-width: 90px; flex-shrink: 0; }
+.ir-value { font-size: .875rem; color: var(--text-mid); }
+.ir-value.green { color: var(--green); font-weight: 600; }
+.ir-value a { color: var(--green); text-decoration: none; }
+.ir-value a:hover { text-decoration: underline; }
+
+.partner-contact-card {
+  display: flex; gap: .875rem;
+  padding: 1rem;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin-bottom: .75rem;
+  transition: all var(--transition);
+}
+.partner-contact-card:hover { border-color: var(--green-border); background: var(--green-bg); }
+.pcc-avatar { width: 40px; height: 40px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-family: var(--font-d); font-weight: 800; font-size: .875rem; flex-shrink: 0; }
+.pcc-green { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+.pcc-teal  { background: var(--teal-bg);  color: var(--teal);  border: 1px solid #9CE0D8; }
+.pcc-navy  { background: rgba(11,26,46,.08); color: var(--navy); border: 1px solid var(--border); }
+.pcc-info {}
+.pcc-name { font-family: var(--font-d); font-size: .875rem; font-weight: 700; color: var(--navy); }
+.pcc-country { font-size: .75rem; color: var(--text-light); }
+.pcc-role { font-family: var(--font-m); font-size: .5625rem; color: var(--green); letter-spacing: .06em; margin-top: .2rem; }
+
+/* Social links */
+.social-links { display: flex; flex-direction: column; gap: .75rem; }
+.social-link {
+  display: flex; align-items: center; gap: .875rem;
+  padding: .875rem 1rem;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all var(--transition);
+  font-size: .875rem; color: var(--text-mid);
+}
+.social-link:hover { border-color: var(--green-border); background: var(--green-bg); color: var(--green); }
+.social-icon { font-size: 1.125rem; }
+.social-info {}
+.social-name { font-weight: 600; color: var(--navy); font-size: .875rem; margin-bottom: .125rem; }
+.social-url { font-family: var(--font-m); font-size: .6875rem; color: var(--text-light); }
+
+/* Form */
+.contact-form-wrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+}
+.cf-title { font-family: var(--font-d); font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: .5rem; }
+.cf-sub { font-size: .875rem; color: var(--text-light); line-height: 1.6; margin-bottom: 2rem; }
+.cf-form { display: flex; flex-direction: column; gap: 1.25rem; }
+.cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.cf-group { display: flex; flex-direction: column; gap: .5rem; }
+.cf-group label { font-family: var(--font-m); font-size: .5875rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-light); }
+.cf-group input,
+.cf-group textarea,
+.cf-group select {
+  padding: .875rem 1rem;
+  background: var(--bg-alt);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-family: var(--font-b); font-size: .9375rem;
+  outline: none;
+  transition: border-color var(--transition), background var(--transition);
+  appearance: none;
+}
+.cf-group input::placeholder,
+.cf-group textarea::placeholder { color: var(--text-light); }
+.cf-group input:focus,
+.cf-group textarea:focus,
+.cf-group select:focus { border-color: var(--green); background: #fff; }
+.cf-group textarea { resize: vertical; min-height: 130px; }
+.cf-note { font-size: .75rem; color: var(--text-light); line-height: 1.5; margin-top: -.5rem; }
+
+@media (max-width: 900px) { .contact-layout { grid-template-columns: 1fr; gap: 3rem; } }
+@media (max-width: 500px) { .cf-row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <img class="nav-logo-img" src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=700,fit=crop,q=95/m7V5Qp7Ly3Uk0kDa/idit-birlesik-d957BPD1pqS8rWX9.png" alt="iDT4GDC">
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="technology.html">Technology</a></li>
+    <li><a href="work-packages.html">Work Packages</a></li>
+    <li><a href="results.html">Results</a></li>
+    <li><a href="consortium.html">Consortium</a></li>
+    <li><a href="achievements.html">Progress</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<nav id="nav-drawer">
+  <a href="index.html">Home</a><a href="technology.html">Technology</a><a href="work-packages.html">Work Packages</a>
+  <a href="results.html">Results</a><a href="consortium.html">Consortium</a><a href="achievements.html">Progress</a>
+  <a href="contact.html" class="nav-cta">Contact</a>
+</nav>
+
+<div class="page-hero">
+  <div class="wrap">
+    <span class="page-hero-label">Get in Touch</span>
+    <h1 class="page-hero-title">Contact the Consortium</h1>
+    <p class="page-hero-sub">Interested in collaboration, technology licensing, research partnership, or simply want to learn more about iDT4GDC? We'd love to hear from you.</p>
+  </div>
+</div>
+
+<section style="background:var(--bg);">
+  <div class="wrap">
+    <div class="contact-layout">
+
+      <!-- Left: Info -->
+      <div class="reveal">
+        <div class="ci-section">
+          <div class="ci-title">Project Information</div>
+          <div class="info-row"><span class="ir-label">Project</span><span class="ir-value">iDT4GDC</span></div>
+          <div class="info-row"><span class="ir-label">Full Name</span><span class="ir-value">Intelligent Digital Twin for Green Data Centres</span></div>
+          <div class="info-row"><span class="ir-label">Programme</span><span class="ir-value">EUREKA ITEA4</span></div>
+          <div class="info-row"><span class="ir-label">Project No.</span><span class="ir-value">SUS2022-042</span></div>
+          <div class="info-row"><span class="ir-label">Status</span><span class="ir-value green">Active · Phase 2</span></div>
+          <div class="info-row"><span class="ir-label">Duration</span><span class="ir-value">36 months · 2023–2026</span></div>
+          <div class="info-row"><span class="ir-label">Project Leader</span><span class="ir-value">Marco Tiemann, Innova Integra Ltd.</span></div>
+          <div class="info-row"><span class="ir-label">ITEA4 Page</span><span class="ir-value"><a href="https://itea4.org/project/idt4gdc.html" target="_blank" rel="noopener">itea4.org/project/idt4gdc.html ↗</a></span></div>
+        </div>
+
+        <div class="ci-section">
+          <div class="ci-title">Consortium Partners</div>
+          <a href="consortium.html#green-continuum" class="partner-contact-card">
+            <div class="pcc-avatar pcc-green">GC</div>
+            <div class="pcc-info">
+              <div class="pcc-name">Green Continuum 🇹🇷</div>
+              <div class="pcc-country">Turkey</div>
+              <div class="pcc-role">WP6 Lead · Consortium Coordinator</div>
+            </div>
+          </a>
+          <a href="consortium.html#bitnet" class="partner-contact-card">
+            <div class="pcc-avatar pcc-teal">BN</div>
+            <div class="pcc-info">
+              <div class="pcc-name">BitNet Bilişim 🇹🇷</div>
+              <div class="pcc-country">Turkey</div>
+              <div class="pcc-role">WP4 · Hardware Optimisation</div>
+            </div>
+          </a>
+          <a href="consortium.html#innova" class="partner-contact-card">
+            <div class="pcc-avatar pcc-navy">II</div>
+            <div class="pcc-info">
+              <div class="pcc-name">Innova Integra Limited 🇬🇧</div>
+              <div class="pcc-country">United Kingdom</div>
+              <div class="pcc-role">WP1 Lead · Project Leader Organisation</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="ci-section">
+          <div class="ci-title">Follow the Project</div>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/company/idt4gdc" target="_blank" rel="noopener noreferrer" class="social-link">
+              <span class="social-icon">💼</span>
+              <div class="social-info">
+                <div class="social-name">LinkedIn</div>
+                <div class="social-url">linkedin.com/company/idt4gdc</div>
+              </div>
+            </a>
+            <a href="https://x.com/idt4gdc" target="_blank" rel="noopener noreferrer" class="social-link">
+              <span class="social-icon">𝕏</span>
+              <div class="social-info">
+                <div class="social-name">X / Twitter</div>
+                <div class="social-url">x.com/idt4gdc</div>
+              </div>
+            </a>
+            <a href="https://itea4.org/project/idt4gdc.html" target="_blank" rel="noopener noreferrer" class="social-link">
+              <span class="social-icon">🔬</span>
+              <div class="social-info">
+                <div class="social-name">ITEA4 Project Page</div>
+                <div class="social-url">itea4.org/project/idt4gdc.html</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="contact-form-wrap reveal" style="transition-delay:.15s;">
+        <div class="cf-title">Send a Message</div>
+        <p class="cf-sub">Fill out the form below and the consortium coordination team will get back to you. For general project enquiries, collaboration proposals, and technology questions.</p>
+
+        <form class="cf-form" onsubmit="return handleFormSubmit(event, 'submit-btn')">
+          <div class="cf-row">
+            <div class="cf-group">
+              <label>First Name *</label>
+              <input type="text" placeholder="Jane" required>
+            </div>
+            <div class="cf-group">
+              <label>Last Name *</label>
+              <input type="text" placeholder="Smith" required>
+            </div>
+          </div>
+          <div class="cf-group">
+            <label>Email Address *</label>
+            <input type="email" placeholder="jane@organisation.eu" required>
+          </div>
+          <div class="cf-group">
+            <label>Organisation</label>
+            <input type="text" placeholder="Your institution or company">
+          </div>
+          <div class="cf-group">
+            <label>Country</label>
+            <input type="text" placeholder="e.g. United Kingdom">
+          </div>
+          <div class="cf-group">
+            <label>Enquiry Type</label>
+            <select>
+              <option value="">— Select an enquiry type —</option>
+              <option>Collaboration / Research Partnership</option>
+              <option>Technology Licensing</option>
+              <option>Pilot Deployment Enquiry</option>
+              <option>Academic / Publication Enquiry</option>
+              <option>Press / Media</option>
+              <option>General Project Information</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="cf-group">
+            <label>Message *</label>
+            <textarea placeholder="Please describe your interest in iDT4GDC, your organisation's context, and how you'd like to engage with the project…" required></textarea>
+          </div>
+          <p class="cf-note">By submitting this form, you consent to the iDT4GDC consortium processing your contact details to respond to your enquiry. Your information will not be shared with third parties.</p>
+          <button type="submit" class="btn-primary" id="submit-btn" style="width:100%; justify-content:center; padding:1rem;">
+            Send Message
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Download Leaflet CTA -->
+<section style="background:var(--bg-alt); border-top: 1px solid var(--border);">
+  <div class="wrap" style="text-align:center;">
+    <div class="reveal">
+      <span class="s-label">Resources</span>
+      <h2 class="s-title">Project Profile Leaflet</h2>
+      <p class="s-sub" style="margin: .875rem auto 2rem;">Download the official iDT4GDC project profile leaflet for a concise overview of the project goals, consortium, and key results.</p>
+      <a href="https://assets.zyrosite.com/m7V5Qp7Ly3Uk0kDa/idt4gdc-project-profile-leaflet-2025-dOqDrP6L6LH343L5.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary">
+        Download Leaflet (PDF)
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1v9M3.5 6l4 4 4-4M2 12h11" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-main">
+    <div>
+      <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=700,fit=crop,q=95/m7V5Qp7Ly3Uk0kDa/idit-birlesik-d957BPD1pqS8rWX9.png" alt="iDT4GDC" class="footer-logo">
+      <p class="footer-desc">Intelligent Digital Twin for Green Data Centres — EUREKA ITEA4 project SUS2022-042.</p>
+      <div class="footer-badges"><span class="f-badge">EUREKA</span><span class="f-badge">ITEA4</span><span class="f-badge">SUS2022-042</span></div>
+    </div>
+    <div class="footer-col"><h4>Project</h4><ul><li><a href="index.html">Home</a></li><li><a href="technology.html">Technology</a></li><li><a href="work-packages.html">Work Packages</a></li><li><a href="results.html">Key Results</a></li><li><a href="achievements.html">Progress</a></li></ul></div>
+    <div class="footer-col"><h4>Consortium</h4><ul><li><a href="consortium.html">Partners</a></li><li><a href="consortium.html#innova">Innova Integra</a></li><li><a href="consortium.html#bitnet">BitNet Bilişim</a></li><li><a href="consortium.html#green-continuum">Green Continuum</a></li></ul></div>
+    <div class="footer-col"><h4>Resources</h4><ul><li><a href="achievements.html">Deliverables</a></li><li><a href="contact.html">Contact</a></li><li><a href="https://itea4.org/project/idt4gdc.html" target="_blank" rel="noopener">ITEA4 Page ↗</a></li><li><a href="https://www.linkedin.com/company/idt4gdc" target="_blank" rel="noopener">LinkedIn ↗</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-disclaimer">© 2026 iDT4GDC Consortium. Co-funded under EUREKA ITEA4 (SUS2022-042). Project leader: Marco Tiemann (Innova Integra Ltd., United Kingdom). The project has been funded by the national funding authorities of the participating countries.</p>
+    <span class="footer-id">iDT4GDC · SUS2022-042</span>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>
